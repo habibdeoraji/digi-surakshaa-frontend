@@ -14,12 +14,18 @@ import Profile from './pages/Profile';
 import ReportScam from './pages/ReportScam';
 import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+import ForgotPassword from './pages/auth/ForgotPassword';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+         <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="safety" element={<Safety />} />
           <Route path="community" element={<Community />} />

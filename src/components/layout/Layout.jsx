@@ -11,7 +11,7 @@ import {
   IconButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "./SideBar";
 import RightSideBar from "./RightSideBar";
@@ -40,11 +40,8 @@ const Layout = () => {
         color="default"
         sx={{
           width: "100%",
-        //   zIndex: theme.zIndex.drawer + 1,
-          // backgroundColor: "#F8F9FA",
           boxShadow: "none",
           position: 'fixed',
-          // borderBottom: "1px solid #E0E0E0",
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -82,11 +79,24 @@ const Layout = () => {
               <MenuItem value="ES">Español</MenuItem>
             </Select>
 
-            <Button variant="outlined" sx={{ marginRight: 1, height:'36px', }} size="small">
+            <Button 
+              variant="outlined" 
+              sx={{ marginRight: 1, height:'36px' }} 
+              size="small"
+              component={Link}
+              to="/login"
+            >
               Login
             </Button>
             {!isSmallScreen && (
-              <Button variant="contained" color="primary" size="small" sx={{ height:'36px' }}>
+              <Button 
+                variant="contained" 
+                color="primary" 
+                size="small" 
+                sx={{ height:'36px' }}
+                component={Link}
+                to="/signup"
+              >
                 Sign Up
               </Button>
             )}
