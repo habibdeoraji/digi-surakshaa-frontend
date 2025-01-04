@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Card, Paper, Grid } from '@mui/material';
+import { Box, Typography, Container, Card, Paper } from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SecurityUpdateIcon from '@mui/icons-material/SecurityUpdate';
 import CampaignIcon from '@mui/icons-material/Campaign';
@@ -77,41 +77,49 @@ const Blog = () => {
           </Box>
 
           {/* Latest Posts */}
-          <Box sx={{ mb: 8 }}>
-            <Typography variant="h4" gutterBottom sx={{ mb: 3 }}>
-              Latest Posts
-            </Typography>
-            <Grid container spacing={3}>
-              {blogPosts.map((post, index) => (
-                <Grid item xs={12} md={4} key={index}>
-                  <Paper 
-                    elevation={2} 
-                    sx={{ 
-                      p: 3, 
-                      height: '100%',
-                      transition: 'transform 0.2s',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        cursor: 'pointer'
-                      }
-                    }}
-                  >
-                    <Typography variant="overline" color="primary">
-                      {post.category}
-                    </Typography>
-                    <Typography variant="h6" gutterBottom>
-                      {post.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      {post.date}
-                    </Typography>
-                    <Typography variant="body1">
-                      {post.excerpt}
-                    </Typography>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
+          <Box 
+            sx={{ 
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 3,
+              mb: 8
+            }}
+          >
+            {blogPosts.map((post, index) => (
+              <Box 
+                key={index}
+                sx={{ 
+                  flex: { xs: '1 1 100%', md: '1 1 calc(33.333% - 16px)' },
+                  minWidth: { xs: '100%', md: 'calc(33.333% - 16px)' }
+                }}
+              >
+                <Paper 
+                  elevation={2} 
+                  sx={{ 
+                    p: 3, 
+                    height: '100%',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      cursor: 'pointer'
+                    }
+                  }}
+                >
+                  <Typography variant="overline" color="primary">
+                    {post.category}
+                  </Typography>
+                  <Typography variant="h6" gutterBottom>
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" gutterBottom>
+                    {post.date}
+                  </Typography>
+                  <Typography variant="body1">
+                    {post.excerpt}
+                  </Typography>
+                </Paper>
+              </Box>
+            ))}
           </Box>
         </Box>
       </Card>

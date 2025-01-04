@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Card, Paper, Grid } from '@mui/material';
+import { Box, Typography, Container, Card, Paper } from '@mui/material';
 import BusinessIcon from '@mui/icons-material/Business';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import SecurityIcon from '@mui/icons-material/Security';
@@ -73,39 +73,47 @@ const Partners = () => {
             </Paper>
           </Box>
 
-          {/* Partners Grid */}
-          <Box sx={{ mb: 8 }}>
-            <Typography variant="h4" gutterBottom sx={{ mb: 3 }}>
-              Featured Partners
-            </Typography>
-            <Grid container spacing={3}>
-              {partners.map((partner, index) => (
-                <Grid item xs={12} md={4} key={index}>
-                  <Paper 
-                    elevation={2} 
-                    sx={{ 
-                      p: 3, 
-                      height: '100%',
-                      transition: 'transform 0.2s',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        cursor: 'pointer'
-                      }
-                    }}
-                  >
-                    <Typography variant="overline" color="primary">
-                      {partner.type}
-                    </Typography>
-                    <Typography variant="h6" gutterBottom>
-                      {partner.name}
-                    </Typography>
-                    <Typography variant="body1">
-                      {partner.description}
-                    </Typography>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
+          {/* Partners Grid -> Flex Container */}
+          <Box 
+            sx={{ 
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 3,
+              mb: 8
+            }}
+          >
+            {partners.map((partner, index) => (
+              <Box 
+                key={index}
+                sx={{ 
+                  flex: { xs: '1 1 100%', md: '1 1 calc(33.333% - 16px)' },
+                  minWidth: { xs: '100%', md: 'calc(33.333% - 16px)' }
+                }}
+              >
+                <Paper 
+                  elevation={2} 
+                  sx={{ 
+                    p: 3, 
+                    height: '100%',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      cursor: 'pointer'
+                    }
+                  }}
+                >
+                  <Typography variant="overline" color="primary">
+                    {partner.type}
+                  </Typography>
+                  <Typography variant="h6" gutterBottom>
+                    {partner.name}
+                  </Typography>
+                  <Typography variant="body1">
+                    {partner.description}
+                  </Typography>
+                </Paper>
+              </Box>
+            ))}
           </Box>
 
           {/* Partnership Benefits */}
