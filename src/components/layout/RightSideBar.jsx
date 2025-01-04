@@ -46,6 +46,9 @@ const RightSidebar = () => {
           position: 'fixed',
           height: 'calc(100% - 64px)',
           top: '64px',
+          boxShadow: '3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 15px rgba(0, 0, 0, 0.2);',
+          margin: '20px',
+          borderRadius: '20px',
         },
       }}
     >
@@ -58,7 +61,7 @@ const RightSidebar = () => {
             sx={{
               padding: 2,
               marginBottom: 2,
-              backgroundColor: card.backgroundColor,
+              backgroundColor: theme => theme.palette.warning.dark,
               color: card.textColor,
               borderRadius: 2,
             }}
@@ -91,7 +94,7 @@ const RightSidebar = () => {
                 }}
               >
                 <Typography variant="body1">{`${index + 1}. ${trend.title}`}</Typography>
-                <Chip label={trend.percentage} color="success" size="small" />
+                <Chip label={trend.percentage} color="error" size="small" />
               </Box>
             ))}
           </Box>

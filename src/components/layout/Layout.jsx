@@ -40,10 +40,11 @@ const Layout = () => {
         color="default"
         sx={{
           width: "100%",
-          zIndex: theme.zIndex.drawer + 1,
-          backgroundColor: "#F8F9FA",
+        //   zIndex: theme.zIndex.drawer + 1,
+          // backgroundColor: "#F8F9FA",
           boxShadow: "none",
-          borderBottom: "1px solid #E0E0E0",
+          position: 'fixed',
+          // borderBottom: "1px solid #E0E0E0",
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -74,19 +75,19 @@ const Layout = () => {
               defaultValue="EN"
               variant="outlined"
               size="small"
-              sx={{ marginRight: 2, minWidth: 100 }}
+              sx={{ marginRight: 2, minWidth: 100, padding: 0, height:'36px' }}
             >
               <MenuItem value="EN">English</MenuItem>
               <MenuItem value="HI">हिंदी</MenuItem>
               <MenuItem value="ES">Español</MenuItem>
             </Select>
 
-            <Button variant="text" sx={{ marginRight: 1 }} size="small">
+            <Button variant="outlined" sx={{ marginRight: 1, height:'36px', }} size="small">
               Login
             </Button>
             {!isSmallScreen && (
-              <Button variant="contained" color="primary" size="small">
-                Get Started
+              <Button variant="contained" color="primary" size="small" sx={{ height:'36px' }}>
+                Sign Up
               </Button>
             )}
           </Box>
@@ -112,6 +113,7 @@ const Layout = () => {
           sx={{
             flexGrow: 1,
             width: '100%',
+            marginTop: '88px',
             p: 3,
             pt: 0,
             transition: theme.transitions.create('margin', {

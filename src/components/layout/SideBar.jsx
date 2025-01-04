@@ -243,10 +243,14 @@ import {
         boxSizing: 'border-box',
         backgroundColor: theme.palette.background.paper,
         borderRight: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-        boxShadow: isSmallScreen ? theme.shadows[8] : 'none',
+        // boxShadow: isSmallScreen ? theme.shadows[8] : 'none',
+        boxShadow: '3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 15px rgba(0, 0, 0, 0.2);',
+        margin: '20px',
+        borderRadius: '20px',
+        height: 'fit-content',
         ...(!isSmallScreen && {
           position: 'fixed',
-          height: `calc(100% - ${theme.spacing(8)})`,
+        //   height: `calc(100% - ${theme.spacing(8)})`,
           top: theme.spacing(8),
         }),
       },
@@ -287,6 +291,7 @@ import {
             sx={{
               display: { xs: 'none', sm: 'block' },
               ...drawerSx,
+              overflowY: 'auto',
             }}
           >
             {drawerContent}
