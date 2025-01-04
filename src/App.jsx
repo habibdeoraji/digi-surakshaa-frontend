@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import Safety from './pages/Safety';
+import Community from './pages/Community';
+import Resources from './pages/Resources';
+import Educational from './pages/Educational';
+import FAQ from './pages/FAQ';
+import Blog from './pages/Blog';
+import Features from './pages/Features';
+import AboutUs from './pages/AboutUs';
+import Partners from './pages/Partners';
+import Profile from './pages/Profile';
+import ReportScam from './pages/ReportScam';
+import Contact from './pages/Contact';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+import ForgotPassword from './pages/auth/ForgotPassword';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+         <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+         <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="safety" element={<Safety />} />
+          <Route path="community" element={<Community />} />
+          <Route path="resources" element={<Resources />} />
+          <Route path="resources/educational" element={<Educational />} />
+          <Route path="resources/faq" element={<FAQ />} />
+          <Route path="resources/blog" element={<Blog />} />
+          <Route path="resources/features" element={<Features />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="about" element={<AboutUs />} />
+          <Route path="partners" element={<Partners />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="report-scam" element={<ReportScam />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
