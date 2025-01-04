@@ -256,7 +256,7 @@ import {
       },
     };
   
-    return (
+  return (
       <Box
         component="nav"
         sx={{
@@ -286,16 +286,16 @@ import {
             {drawerContent}
           </Drawer>
         ) : (
-          <Drawer
-            variant="permanent"
-            sx={{
+    <Drawer
+      variant="permanent"
+      sx={{
               display: { xs: 'none', sm: 'block' },
               ...drawerSx,
               overflowY: 'auto',
             }}
           >
             {drawerContent}
-          </Drawer>
+    </Drawer>
         )}
       </Box>
     );
@@ -306,5 +306,5 @@ import {
     handleDrawerToggle: PropTypes.func.isRequired, 
     isSmallScreen: PropTypes.bool.isRequired
   };
-  
-  export default Sidebar;
+
+export default Sidebar;
