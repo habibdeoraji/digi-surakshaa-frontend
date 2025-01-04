@@ -98,7 +98,7 @@ const Layout = () => {
         sx={{
           display: "flex",
           flexGrow: 1,
-          mt: "64px",
+          // mt: "64px",
           width: '100%',
           position: 'relative',
         }}
@@ -113,6 +113,7 @@ const Layout = () => {
             flexGrow: 1,
             width: '100%',
             p: 3,
+            pt: 0,
             transition: theme.transitions.create('margin', {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.leavingScreen,
