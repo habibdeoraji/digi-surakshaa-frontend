@@ -17,6 +17,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import ForgotPassword from './pages/auth/ForgotPassword';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="report-scam" element={<ReportScam />} />
           <Route path="contact" element={<Contact />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
