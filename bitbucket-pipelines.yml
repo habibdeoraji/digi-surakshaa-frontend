@@ -1,19 +1,40 @@
-image: node:16
+image: node:18
+
+definitions:
+  steps:
+    - step: &build-test
+        name: Build and Test
+        caches:
+          - node
+        script:
+          - node --version
+          - npm --version
+          - npm install
+          - npm run build
+        artifacts:
+          - dist/**
 
 pipelines:
   branches:
     staging:
+      - step: *build-test
       - step:
-          name: Build and Deploy to Vercel
-          caches:
-            - node
+          name: Deploy to Vercel
           script:
-            - npm install -g vercel
-            - npm install
-            - npm run build
+            - npm install --global vercel
+            - vercel --version
             - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
             - vercel build --token=$VERCEL_TOKEN
             - vercel deploy --prebuilt --token=$VERCEL_TOKEN --prod
+          artifacts:
+            - .vercel/**
+
+  pull-requests:
+    '**':
+      - step: *build-test
+
+options:
+  max-time: 30
 
 definitions:
   caches:
