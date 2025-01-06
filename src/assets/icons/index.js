@@ -15,3 +15,4 @@ export { default as CloseIcon } from '@mui/icons-material/Close';
 export { default as ExpandLessIcon } from '@mui/icons-material/ExpandLess';
 export { default as ExpandMoreIcon } from '@mui/icons-material/ExpandMore';
 export { default as DashboardIcon } from '@mui/icons-material/Dashboard';
+export { default as SentimentVeryDissatisfiedIcon } from '@mui/icons-material/SentimentVeryDissatisfied';
