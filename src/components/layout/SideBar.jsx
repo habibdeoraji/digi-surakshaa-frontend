@@ -17,6 +17,8 @@ import {
     ExpandMoreIcon,
   } from "../../assets/icons";
   import { routes } from "../../routes/routes";
+  import { useSelector } from 'react-redux';
+  import { selectCurrentUser } from '../../store/slices/authSlice';
   
   const NavMenuItem = styled(Link)(({ theme, active }) => ({
     display: "flex",
@@ -146,6 +148,7 @@ import {
 
     const theme = useTheme();
     const location = useLocation();
+    const user = useSelector(selectCurrentUser);
     const [openSubMenus, setOpenSubMenus] = useState({});
   
     const isActive = (path) => {
@@ -163,6 +166,9 @@ import {
     };
   
     const renderMenuItem = (route) => {
+        if (route.isProtected && !user) {
+            return null;
+        }
       const Icon = route.icon;
       const active = isActive(route.path);
   
@@ -243,14 +249,13 @@ import {
         boxSizing: 'border-box',
         backgroundColor: theme.palette.background.paper,
         borderRight: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-        // boxShadow: isSmallScreen ? theme.shadows[8] : 'none',
         boxShadow: '3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 15px rgba(0, 0, 0, 0.2);',
         margin: '20px',
         borderRadius: '20px',
-        height: 'fit-content',
+        height: '-webkit-fill-available',
+        overflowY: 'auto',
         ...(!isSmallScreen && {
           position: 'fixed',
-        //   height: `calc(100% - ${theme.spacing(8)})`,
           top: theme.spacing(8),
         }),
       },

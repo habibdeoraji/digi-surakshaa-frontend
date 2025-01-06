@@ -17,6 +17,8 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import ForgotPassword from './pages/auth/ForgotPassword';
+import NotFound from './pages/NotFound';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
   return (
@@ -25,20 +27,36 @@ function App() {
          <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
-         <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="safety" element={<Safety />} />
-          <Route path="community" element={<Community />} />
+          <Route path="community" element={
+            <ProtectedRoute>
+              <Community />
+            </ProtectedRoute>
+          } />
           <Route path="resources" element={<Resources />} />
           <Route path="resources/educational" element={<Educational />} />
           <Route path="resources/faq" element={<FAQ />} />
           <Route path="resources/blog" element={<Blog />} />
           <Route path="resources/features" element={<Features />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
           <Route path="about" element={<AboutUs />} />
           <Route path="partners" element={<Partners />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="report-scam" element={<ReportScam />} />
+          <Route path="profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
+          <Route path="report-scam" element={
+            <ProtectedRoute>
+              <ReportScam />
+            </ProtectedRoute>
+          } />
           <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
