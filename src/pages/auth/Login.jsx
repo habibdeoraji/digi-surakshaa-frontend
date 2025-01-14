@@ -7,24 +7,29 @@ import {
   InputAdornment,
   IconButton,
   Alert,
-  Divider
+  Divider,
 } from '@mui/material';
 import { useState } from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate, Link as RouterLink,  } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import GoogleIcon from '@mui/icons-material/Google';
 import SecurityIcon from '@mui/icons-material/Security';
+import { useDispatch } from 'react-redux';
+import { useLoginMutation } from '../../api/services/authService';
+import { setCredentials } from '../../store/slices/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  // const location = useLocation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,23 +37,19 @@ const Login = () => {
       ...prev,
       [name]: value
     }));
-    setError(''); // Clear error when user types
+    if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-
     try {
-      // Add your authentication logic here
-      console.log('Login attempt with:', formData);
-      // On success:
-      navigate('/dashboard');
+      const userData = await login(formData).unwrap();
+      console.log(userData);
+      dispatch(setCredentials(userData.data));
+      const from = '/dashboard';
+      navigate(from);
     } catch (err) {
-      setError(err.message || 'Failed to login. Please try again.');
-    } finally {
-      setLoading(false);
+      setError(err.data?.message || 'Failed to login. Please try again.');
     }
   };
 
@@ -99,7 +100,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
-              label="Email Address"
+              label="Email"
               name="email"
               type="email"
               value={formData.email}
@@ -132,14 +133,23 @@ const Login = () => {
             />
 
             <Button
+              type="submit"
               fullWidth
               variant="contained"
               size="large"
-              type="submit"
-              disabled={loading}
-              sx={{ mb: 2 }}
+              disabled={isLoading}
+              sx={{ 
+                mb: 2,
+                height: 48,
+                position: 'relative',
+                '&:disabled': {
+                  backgroundColor: 'primary.main',
+                  color: 'primary.contrastText',
+                  opacity: 0.7
+                }
+              }}
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
 
             <Box sx={{ textAlign: 'center', mb: 3 }}>

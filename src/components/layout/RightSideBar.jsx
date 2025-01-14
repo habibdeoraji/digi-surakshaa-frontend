@@ -44,7 +44,8 @@ const RightSidebar = () => {
           boxSizing: 'border-box',
           backgroundColor: '#F8F9FA',
           position: 'fixed',
-          height: 'calc(100% - 64px)',
+          height: '-webkit-fill-available',
+          overflowY: 'auto',
           top: '64px',
           boxShadow: '3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 15px rgba(0, 0, 0, 0.2);',
           margin: '20px',
@@ -52,7 +53,7 @@ const RightSidebar = () => {
         },
       }}
     >
-      <Box sx={{ p: 2, overflowY: 'auto' }}>
+      <Box sx={{ p: 2 }}>
         {/* Card Data */}
         {cardData.map((card, index) => (
           <Paper
@@ -61,8 +62,8 @@ const RightSidebar = () => {
             sx={{
               padding: 2,
               marginBottom: 2,
-              backgroundColor: theme => theme.palette.warning.dark,
-              color: card.textColor,
+              backgroundColor: '#fddfdf',
+              color: '#d32f2f',
               borderRadius: 2,
             }}
           >
