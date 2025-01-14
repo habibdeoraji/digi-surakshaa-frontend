@@ -19,6 +19,7 @@ import Signup from './pages/auth/Signup';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import { ReportedScams, SafetyScore, SavedScams, Settings } from './pages';
 
 function App() {
   return (
@@ -58,6 +59,27 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="contact" element={<Contact />} />
+          <Route path="reported-scams" element={
+            <ProtectedRoute>
+              <ReportedScams />
+            </ProtectedRoute>
+          } />
+          <Route path="saved-scams" element={
+            <ProtectedRoute>
+              <SavedScams />
+            </ProtectedRoute>
+          } />
+          <Route path="safety-score" element={
+            <ProtectedRoute>
+              <SafetyScore />
+            </ProtectedRoute>
+          } />
+          <Route path="settings" element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          } />
+
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

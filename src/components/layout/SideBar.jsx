@@ -6,12 +6,13 @@ import {
   Typography,
   useTheme,
   alpha,
+  Button,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { CloseIcon, ExpandLessIcon, ExpandMoreIcon } from "../../assets/icons";
+import { CloseIcon, ExpandLessIcon, ExpandMoreIcon, ReportProblemIcon } from "../../assets/icons";
 import { routes } from "../../routes/routes";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/slices/authSlice";
@@ -133,11 +134,34 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
+const ReportScamButton = styled(Button)(({ theme }) => ({
+  position: 'absolute',
+  bottom: theme.spacing(3),
+  left: theme.spacing(2),
+  right: theme.spacing(2),
+  height: 42,
+  borderRadius: 21,
+  textTransform: 'none',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.common.white,
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+    boxShadow: `0 4px 8px 0 ${alpha(theme.palette.primary.main, 0.24)}`,
+  },
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+}));
+
 const Sidebar = ({ mobileOpen, handleDrawerToggle, isSmallScreen }) => {
   const theme = useTheme();
   const location = useLocation();
   const user = useSelector(selectCurrentUser);
   const [openSubMenus, setOpenSubMenus] = useState({});
+  const navigate = useNavigate();
 
   const isActive = (path) => {
     if (path === "/") {
@@ -226,6 +250,17 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle, isSmallScreen }) => {
       <List sx={{ padding: theme.spacing(2, 1) }}>
         {routes.map((route) => renderMenuItem(route))}
       </List>
+      <Box sx={{ pb: 7 }}>
+        <ReportScamButton
+          variant="contained"
+          onClick={() => navigate('/report-scam')}
+          startIcon={
+            <ReportProblemIcon sx={{ fontSize: 20 }} />
+          }
+        >
+          Report Scam
+        </ReportScamButton>
+      </Box>
     </>
   );
 
