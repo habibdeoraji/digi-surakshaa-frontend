@@ -10,7 +10,7 @@ import {
   Divider,
 } from '@mui/material';
 import { useState } from 'react';
-import { useNavigate, Link as RouterLink, useLocation } from 'react-router-dom';
+import { useNavigate, Link as RouterLink,  } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -29,7 +29,7 @@ const Login = () => {
     email: '',
     password: ''
   });
-  const location = useLocation();
+  // const location = useLocation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,8 +44,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const userData = await login(formData).unwrap();
-      dispatch(setCredentials(userData));
-      const from = location.state?.from?.pathname || '/dashboard';
+      console.log(userData);
+      dispatch(setCredentials(userData.data));
+      const from = '/dashboard';
       navigate(from);
     } catch (err) {
       setError(err.data?.message || 'Failed to login. Please try again.');

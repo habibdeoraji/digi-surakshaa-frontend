@@ -62,8 +62,8 @@ const RightSidebar = () => {
             sx={{
               padding: 2,
               marginBottom: 2,
-              backgroundColor: theme => theme.palette.warning.dark,
-              color: card.textColor,
+              backgroundColor: '#fddfdf',
+              color: '#d32f2f',
               borderRadius: 2,
             }}
           >
