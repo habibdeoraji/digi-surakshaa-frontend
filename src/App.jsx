@@ -20,6 +20,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { ReportedScams, SafetyScore, SavedScams, Settings } from './pages';
+import ScamDetails from './pages/ScamDetails';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="scam/:id" element={<ScamDetails />} />
           <Route path="safety" element={<Safety />} />
           <Route path="community" element={
             <ProtectedRoute>

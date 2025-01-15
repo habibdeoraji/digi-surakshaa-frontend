@@ -2,8 +2,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Select,
-  MenuItem,
   Button,
   Box,
   useMediaQuery,
@@ -126,7 +124,7 @@ const Layout = () => {
             }}
           >
             {/* Language Selector */}
-            <Select
+            {/* <Select
               defaultValue="EN"
               variant="outlined"
               size="small"
@@ -135,7 +133,7 @@ const Layout = () => {
               <MenuItem value="EN">English</MenuItem>
               <MenuItem value="HI">हिंदी</MenuItem>
               <MenuItem value="ES">Español</MenuItem>
-            </Select>
+            </Select> */}
 
             {/* Conditional Auth Buttons */}
             {user ? (

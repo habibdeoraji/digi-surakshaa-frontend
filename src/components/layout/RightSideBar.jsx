@@ -1,37 +1,79 @@
-import { Drawer, Box, Typography, Paper, Chip } from "@mui/material";
+import { Drawer } from '@mui/material';
+import { useLocation } from 'react-router-dom';
+import {
+  HomeSidebar,
+  ScamDetailsSidebar,
+  SafetyScoreSidebar,
+  ReportedScamsSidebar,
+  SavedScamsSidebar,
+  ProfileSidebar,
+  SettingsSidebar,
+  DashboardSidebar,
+  SafetySidebar,
+  CommunitySidebar,
+  ResourcesSidebar,
+  AboutSidebar,
+  PartnersSidebar,
+  ReportScamSidebar,
+  ContactSidebar,
+} from '../sidebars';
 
-// TODO: Add the data from the backend
-const cardData = [
-    {
-      title: "Active Scams",
-      value: "1,247",
-      subtitle: "+32% Last Week",
-      backgroundColor: "#B71C1C",
-      textColor: "#FFFFFF",
-    },
-    {
-      title: "Money Lost",
-      value: "₹258Cr",
-      subtitle: "This Month",
-      backgroundColor: "#B71C1C",
-      textColor: "#FFFFFF",
-    },
-    {
-      title: "Cases Reported",
-      value: "13,892",
-      subtitle: "This Year",
-      backgroundColor: "#B71C1C",
-      textColor: "#FFFFFF",
-    },
-  ];
-  
-  const trendingData = [
-    { title: "KYC Fraud", percentage: "+127%" },
-    { title: "Crypto Scams", percentage: "+89%" },
-    { title: "Job Fraud", percentage: "+45%" },
-  ];
+const RightSideBar = () => {
+  const location = useLocation();
 
-const RightSidebar = () => {
+  const getSidebarContent = () => {
+    const path = location.pathname;
+
+    // Match the current path to the appropriate sidebar
+    if (path === '/') {
+      return <HomeSidebar />;
+    }
+    if (path === '/dashboard') {
+      return <DashboardSidebar />;
+    }
+    if (path === '/safety') {
+      return <SafetySidebar />;
+    }
+    if (path === '/community') {
+      return <CommunitySidebar />;
+    }
+    if (path.startsWith('/scam/')) {
+      return <ScamDetailsSidebar />;
+    }
+    if (path === '/safety-score') {
+      return <SafetyScoreSidebar />;
+    }
+    if (path === '/reported-scams') {
+      return <ReportedScamsSidebar />;
+    }
+    if (path === '/saved-scams') {
+      return <SavedScamsSidebar />;
+    }
+    if (path === '/profile') {
+      return <ProfileSidebar />;
+    }
+    if (path === '/settings') {
+      return <SettingsSidebar />;
+    }
+    if (path.startsWith('/resources')) {
+      return <ResourcesSidebar />;
+    }
+    if (path === '/about') {
+      return <AboutSidebar />;
+    }
+    if (path === '/partners') {
+      return <PartnersSidebar />;
+    }
+    if (path === '/report-scam') {
+      return <ReportScamSidebar />;
+    }
+    if (path === '/contact') {
+      return <ContactSidebar />;
+    }
+
+    return null;
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -53,56 +95,9 @@ const RightSidebar = () => {
         },
       }}
     >
-      <Box sx={{ p: 2 }}>
-        {/* Card Data */}
-        {cardData.map((card, index) => (
-          <Paper
-            key={index}
-            elevation={3}
-            sx={{
-              padding: 2,
-              marginBottom: 2,
-              backgroundColor: '#fddfdf',
-              color: '#d32f2f',
-              borderRadius: 2,
-            }}
-          >
-            <Typography variant="subtitle1">{card.title}</Typography>
-            <Typography variant="h4" fontWeight="bold">
-              {card.value}
-            </Typography>
-            <Typography variant="body2">{card.subtitle}</Typography>
-          </Paper>
-        ))}
-
-        {/* Trending Section */}
-        <Box>
-          <Typography variant="h6" sx={{ marginBottom: 1 }}>
-            Trending
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            {trendingData.map((trend, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: 1,
-                  backgroundColor: "#FFFFFF",
-                  borderRadius: 2,
-                  boxShadow: "0px 1px 4px rgba(0,0,0,0.1)",
-                }}
-              >
-                <Typography variant="body1">{`${index + 1}. ${trend.title}`}</Typography>
-                <Chip label={trend.percentage} color="error" size="small" />
-              </Box>
-            ))}
-          </Box>
-        </Box>
-      </Box>
+      {getSidebarContent()}
     </Drawer>
   );
 };
 
-export default RightSidebar;
+export default RightSideBar;
