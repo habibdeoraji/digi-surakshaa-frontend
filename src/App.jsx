@@ -1,26 +1,31 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import Home from './pages/Home';
-import Safety from './pages/Safety';
-import Community from './pages/Community';
-import Resources from './pages/Resources';
-import Educational from './pages/Educational';
-import FAQ from './pages/FAQ';
-import Blog from './pages/Blog';
-import Features from './pages/Features';
-import AboutUs from './pages/AboutUs';
-import Partners from './pages/Partners';
-import Profile from './pages/Profile';
-import ReportScam from './pages/ReportScam';
-import Contact from './pages/Contact';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/auth/Login';
-import Signup from './pages/auth/Signup';
-import ForgotPassword from './pages/auth/ForgotPassword';
-import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import { ReportedScams, SafetyScore, SavedScams, Settings } from './pages';
-import ScamDetails from './pages/ScamDetails';
+import {
+  ReportedScams,
+  SafetyScore,
+  SavedScams,
+  Settings,
+  Educational,
+  Home,
+  ScamDetails,
+  Safety,
+  Community,
+  Resources,
+  FaqSection,
+  Blog,
+  Features,
+  Dashboard,
+  AboutUs,
+  Partners,
+  Profile,
+  ReportScam,
+  Contact,
+  NotFound,
+  Login,
+  Signup,
+  ForgotPassword
+} from './pages';
 
 function App() {
   return (
@@ -40,7 +45,7 @@ function App() {
           } />
           <Route path="resources" element={<Resources />} />
           <Route path="resources/educational" element={<Educational />} />
-          <Route path="resources/faq" element={<FAQ />} />
+          <Route path="resources/faq" element={<FaqSection />} />
           <Route path="resources/blog" element={<Blog />} />
           <Route path="resources/features" element={<Features />} />
           <Route path="dashboard" element={
