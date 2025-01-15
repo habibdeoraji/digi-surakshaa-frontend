@@ -16,3 +16,5 @@ export { default as ExpandLessIcon } from '@mui/icons-material/ExpandLess';
 export { default as ExpandMoreIcon } from '@mui/icons-material/ExpandMore';
 export { default as DashboardIcon } from '@mui/icons-material/Dashboard';
 export { default as SentimentVeryDissatisfiedIcon } from '@mui/icons-material/SentimentVeryDissatisfied';
+export { default as BookmarkIcon } from '@mui/icons-material/Bookmark';
+export { default as SettingsIcon } from '@mui/icons-material/Settings';

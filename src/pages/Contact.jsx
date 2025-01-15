@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Card, Paper, TextField, Button, Grid } from '@mui/material';
+import { Box, Typography, Container, Card, Paper, TextField, Button } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -24,7 +24,7 @@ const Contact = () => {
               gap: 4
             }}
           >
-            <Paper elevation={0} sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper', flex: 1 }}>
+            <Paper elevation={0} sx={{ textAlign: 'center', bgcolor: 'background.paper', flex: 1 }}>
               <EmailIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
               <Typography variant="h6" gutterBottom>
                 Email Support
@@ -34,7 +34,7 @@ const Contact = () => {
               </Typography>
             </Paper>
 
-            <Paper elevation={0} sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper', flex: 1 }}>
+            <Paper elevation={0} sx={{ textAlign: 'center', bgcolor: 'background.paper', flex: 1 }}>
               <PhoneIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
               <Typography variant="h6" gutterBottom>
                 24/7 Helpline
@@ -44,7 +44,7 @@ const Contact = () => {
               </Typography>
             </Paper>
 
-            <Paper elevation={0} sx={{ p: 3, textAlign: 'center', bgcolor: 'background.paper', flex: 1 }}>
+            <Paper elevation={0} sx={{ textAlign: 'center', bgcolor: 'background.paper', flex: 1 }}>
               <LocationOnIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
               <Typography variant="h6" gutterBottom>
                 Head Office
@@ -56,66 +56,63 @@ const Contact = () => {
           </Box>
 
           {/* Contact Form */}
-          <Box sx={{ maxWidth: 600, mx: 'auto' }}>
+          <Box sx={{ }}>
             <Typography variant="h4" gutterBottom sx={{ mb: 3 }}>
               Send us a Message
             </Typography>
             <form>
-              <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Box sx={{ display: 'flex', gap: 2 }}>
                   <TextField
                     fullWidth
                     label="First Name"
                     required
+                    size="small"
                     variant="outlined"
                   />
-                </Grid>
-                <Grid item xs={12} sm={6}>
                   <TextField
                     fullWidth
                     label="Last Name"
                     required
+                    size="small"
                     variant="outlined"
                   />
-                </Grid>
-                <Grid item xs={12}>
+                </Box>
+                <Box sx={{ display: 'flex', gap: 2 }}>
                   <TextField
                     fullWidth
                     label="Email"
                     required
                     type="email"
+                    size="small"
                     variant="outlined"
                   />
-                </Grid>
-                <Grid item xs={12}>
                   <TextField
                     fullWidth
                     label="Phone Number"
+                    size="small"
                     variant="outlined"
                   />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Message"
-                    required
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    fullWidth
-                    sx={{ py: 1.5 }}
-                  >
-                    Send Message
-                  </Button>
-                </Grid>
-              </Grid>
+                </Box>
+                <TextField
+                  fullWidth
+                  label="Message"
+                  required
+                  multiline
+                  rows={4}
+                  size="small"
+                  variant="outlined"
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  fullWidth
+                  sx={{ py: 1.5 }}
+                >
+                  Send Message
+                </Button>
+              </Box>
             </form>
           </Box>
         </Box>
