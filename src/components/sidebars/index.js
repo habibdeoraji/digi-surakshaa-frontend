@@ -12,4 +12,5 @@ export { default as SavedScamsSidebar } from './SavedScamsSidebar';
 export { default as ProfileSidebar } from './ProfileSidebar';
 export { default as SettingsSidebar } from './SettingsSidebar';
 export { default as ReportScamSidebar } from './ReportScamSidebar';
-export { default as ContactSidebar } from './ContactSidebar'; 
+export { default as ContactSidebar } from './ContactSidebar';
+export { default as EducationalSidebar } from './EducationalSidebar'; 

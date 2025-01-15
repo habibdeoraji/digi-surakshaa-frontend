@@ -16,6 +16,7 @@ import {
   PartnersSidebar,
   ReportScamSidebar,
   ContactSidebar,
+  EducationalSidebar,
 } from '../sidebars';
 
 const RightSideBar = () => {
@@ -69,6 +70,9 @@ const RightSideBar = () => {
     }
     if (path === '/contact') {
       return <ContactSidebar />;
+    }
+    if (path === '/educational') {
+      return <EducationalSidebar />;
     }
 
     return null;

@@ -1,67 +1,117 @@
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, Chip } from '@mui/material';
-import { School, Article, Help, Info } from '@mui/icons-material';
+import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, ListItemButton, Chip } from '@mui/material';
+import { 
+  Security as SecurityIcon,
+  Help as HelpIcon,
+  Article as ArticleIcon,
+  Info as InfoIcon
+} from '@mui/icons-material';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ResourcesSidebar = () => {
-  const resourceStats = [
-    { 
-      icon: School,
-      title: 'Educational Resources',
-      count: 45,
-      label: 'Available Courses'
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const resourceLinks = [
+    {
+      title: "Safety Guide",
+      icon: SecurityIcon,
+      path: "/resources/safety",
+      description: "Learn about online safety",
+      count: 12,
+      color: "#2196F3"
     },
-    { 
-      icon: Article,
-      title: 'Blog Posts',
-      count: 128,
-      label: 'Articles'
+    {
+      title: "FAQ",
+      icon: HelpIcon,
+      path: "/resources/faq",
+      description: "Common questions answered",
+      count: 50,
+      color: "#4CAF50"
     },
-    { 
-      icon: Help,
-      title: 'FAQ',
-      count: 56,
-      label: 'Questions'
+    {
+      title: "Articles & Updates",
+      icon: ArticleIcon,
+      path: "/resources/articles",
+      description: "Latest news and updates",
+      count: 28,
+      color: "#FF9800"
     },
-    { 
-      icon: Info,
-      title: 'Features',
-      count: 24,
-      label: 'Available'
+    {
+      title: "Features",
+      icon: InfoIcon,
+      path: "/resources/features",
+      description: "Platform features guide",
+      count: 8,
+      color: "#9C27B0"
     }
   ];
 
   return (
-    <Box sx={{ p: 4 }}>
-      <Box>
-        <Typography variant="h6" gutterBottom>
-          Resource Overview
-        </Typography>
-        <List sx={{ py: 1 }}>
-          {resourceStats.map((item, index) => (
-            <ListItem key={index} sx={{ px: 0, py: 1.5 }}>
-              <ListItemIcon sx={{ minWidth: 40 }}>
-                <item.icon color="primary" />
-              </ListItemIcon>
-              <ListItemText 
-                primary={item.title}
-                secondary={item.label}
-                primaryTypographyProps={{
-                  variant: 'body2',
-                  fontWeight: 500
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h6" gutterBottom sx={{ px: 2, mb: 3 }}>
+        Resource Categories
+      </Typography>
+      <List sx={{ px: 1 }}>
+        {resourceLinks.map((item) => {
+          const Icon = item.icon;
+          const isSelected = location.pathname === item.path;
+          
+          return (
+            <ListItem 
+              key={item.title} 
+              disablePadding 
+              sx={{ mb: 1 }}
+            >
+              <ListItemButton
+                onClick={() => navigate(item.path)}
+                selected={isSelected}
+                sx={{
+                  borderRadius: 2,
+                  gap: 1,
+                  transition: 'all 0.2s ease',
+                  '&.Mui-selected': {
+                    bgcolor: `${item.color}15`,
+                    '&:hover': {
+                      bgcolor: `${item.color}20`,
+                    }
+                  },
+                  '&:hover': {
+                    bgcolor: `${item.color}10`,
+                  }
                 }}
-                secondaryTypographyProps={{
-                  variant: 'caption'
-                }}
-              />
-              <Chip 
-                label={item.count}
-                color="primary"
-                size="small"
-                variant="outlined"
-              />
+              >
+                <ListItemIcon sx={{ minWidth: 40 }}>
+                  <Icon sx={{ color: isSelected ? item.color : 'action.active' }} />
+                </ListItemIcon>
+                <ListItemText 
+                  primary={item.title}
+                  secondary={item.description}
+                  primaryTypographyProps={{
+                    fontWeight: isSelected ? 600 : 400,
+                    color: isSelected ? item.color : 'text.primary'
+                  }}
+                  secondaryTypographyProps={{
+                    variant: 'caption'
+                  }}
+                />
+                <Chip
+                  label={item.count}
+                  size="small"
+                  sx={{
+                    bgcolor: isSelected ? `${item.color}15` : 'action.hover',
+                    color: isSelected ? item.color : 'text.secondary',
+                    height: 24,
+                    '& .MuiChip-label': {
+                      px: 1,
+                      fontSize: '0.75rem'
+                    }
+                  }}
+                />
+              </ListItemButton>
             </ListItem>
-          ))}
-        </List>
-      </Box>
+          );
+        })}
+      </List>
     </Box>
   );
 };
