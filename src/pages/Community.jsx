@@ -3,7 +3,6 @@ import {
   Typography, 
   Container, 
   Card, 
-  Grid, 
   Paper,
   Button,
   Avatar,
@@ -111,9 +110,21 @@ const Community = () => {
             <Typography variant="h4" gutterBottom sx={{ mb: 3 }}>
               Trending Discussions
             </Typography>
-            <Grid container spacing={3}>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: 3 
+              }}
+            >
               {recentTopics.map((topic, index) => (
-                <Grid item xs={12} md={4} key={index}>
+                <Box 
+                  sx={{ 
+                    flex: '1 1 calc(33.333% - 24px)', // Adjust for spacing
+                    boxSizing: 'border-box' 
+                  }} 
+                  key={index}
+                >
                   <Paper 
                     sx={{ 
                       p: 3,
@@ -149,9 +160,9 @@ const Community = () => {
                       </Typography>
                     </Box>
                   </Paper>
-                </Grid>
+                </Box>
               ))}
-            </Grid>
+            </Box>
           </Box>
 
           {/* Call to Action */}

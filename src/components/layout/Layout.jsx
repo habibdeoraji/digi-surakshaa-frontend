@@ -123,17 +123,6 @@ const Layout = () => {
               justifyContent: "center",
             }}
           >
-            {/* Language Selector */}
-            {/* <Select
-              defaultValue="EN"
-              variant="outlined"
-              size="small"
-              sx={{ marginRight: 2, minWidth: 100, padding: 0, height: "36px" }}
-            >
-              <MenuItem value="EN">English</MenuItem>
-              <MenuItem value="HI">हिंदी</MenuItem>
-              <MenuItem value="ES">Español</MenuItem>
-            </Select> */}
 
             {/* Conditional Auth Buttons */}
             {user ? (
