@@ -45,6 +45,29 @@ const GradientButton = styled(Button)(({ theme }) => ({
   gap: theme.spacing(1),
 }));
 
+const LogoText = styled(Typography)(({ theme, isSmallScreen }) => ({
+  fontWeight: 800,
+  fontSize: isSmallScreen ? "1.25rem" : "1.5rem",
+  position: isSmallScreen ? 'absolute' : 'static',
+  left: '50%',
+  transform: isSmallScreen ? 'translateX(-50%)' : 'none',
+  width: isSmallScreen ? 'auto' : 'unset',
+  background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  letterSpacing: '0.5px',
+  fontFamily: "'Poppins', sans-serif",
+  display: 'flex',
+  alignItems: 'center',
+  gap: '4px',
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)',
+  '& .highlight': {
+    color: theme.palette.primary.main,
+    WebkitTextFillColor: 'initial',
+    fontWeight: 900,
+  }
+}));
+
 const Layout = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -109,40 +132,60 @@ const Layout = () => {
             display: "flex",
             justifyContent: "space-between",
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.1)",
+            position: 'relative',
           }}
         >
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle - Position it absolutely */}
           {isSmallScreen && (
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
+              sx={{ 
+                position: 'absolute',
+                left: 8,
+              }}
             >
               <MenuIcon />
             </IconButton>
           )}
 
-          {/* Logo/Brand - Hidden on mobile */}
-          {!isSmallScreen && (
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: 700, fontSize: "1.5rem" }}
-            >
-              Digi Suraksha
-            </Typography>
-          )}
+          {/* Logo/Brand - Show on all screens and center on mobile */}
+          <LogoText variant="h6" isSmallScreen={isSmallScreen}>
+            <span>Digi</span>
+            <span className="highlight">Suraksha</span>
+            {!isSmallScreen && (
+              <Box
+                component="span"
+                sx={{
+                  fontSize: '10px',
+                  bgcolor: (theme) => alpha(theme.palette.primary.main, 0.1),
+                  color: 'primary.main',
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: '12px',
+                  ml: 1,
+                  fontWeight: 600,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  WebkitTextFillColor: 'initial',
+                }}
+              >
+                Beta
+              </Box>
+            )}
+          </LogoText>
 
-          {/* Right Section: Language & Auth Buttons */}
+          {/* Right Section: Auth Buttons */}
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              ml: 'auto',
             }}
           >
-
             {/* Conditional Auth Buttons */}
             {user ? (
               <Box sx={{ position: 'relative' }}>
