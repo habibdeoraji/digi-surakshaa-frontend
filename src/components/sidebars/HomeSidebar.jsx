@@ -1,5 +1,5 @@
 import { Box, Typography, Stack, Chip, Divider, LinearProgress } from "@mui/material";
-import { TrendingUp, Warning, Security } from "@mui/icons-material";
+import { TrendingUp, Warning } from "@mui/icons-material";
 
 const HomeSidebar = () => {
   const scamStats = [
@@ -45,12 +45,6 @@ const HomeSidebar = () => {
       severity: "warning",
       reportCount: 98
     }
-  ];
-
-  const safetyTips = [
-    "Never share OTP with anyone",
-    "Verify unusual payment requests",
-    "Check website URLs carefully"
   ];
 
   return (
@@ -123,39 +117,6 @@ const HomeSidebar = () => {
                   {scam.percentage}%
                 </Typography>
               </Box>
-            </Box>
-          ))}
-        </Stack>
-      </Box>
-
-      <Divider sx={{ my: 3 }} />
-
-      {/* Safety Tips */}
-      <Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-          <Security color="primary" />
-          <Typography variant="h6">Quick Safety Tips</Typography>
-        </Box>
-        <Stack spacing={1.5}>
-          {safetyTips.map((tip, index) => (
-            <Box 
-              key={index}
-              sx={{ 
-                display: 'flex',
-                gap: 1.5,
-                p: 1.5,
-                bgcolor: 'primary.light',
-                color: 'primary.dark',
-                borderRadius: 2,
-                opacity: 0.9
-              }}
-            >
-              <Typography variant="body2" fontWeight="500">
-                {`${index + 1}.`}
-              </Typography>
-              <Typography variant="body2">
-                {tip}
-              </Typography>
             </Box>
           ))}
         </Stack>

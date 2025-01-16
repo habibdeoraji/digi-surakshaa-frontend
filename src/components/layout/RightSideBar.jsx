@@ -25,57 +25,34 @@ const RightSideBar = () => {
   const getSidebarContent = () => {
     const path = location.pathname;
 
-    // Match the current path to the appropriate sidebar
-    if (path === '/') {
-      return <HomeSidebar />;
-    }
-    if (path === '/dashboard') {
-      return <DashboardSidebar />;
-    }
-    if (path === '/safety') {
-      return <SafetySidebar />;
-    }
-    if (path === '/community') {
-      return <CommunitySidebar />;
-    }
+    // Use a mapping object to match the current path to the appropriate sidebar
+    const sidebarMap = {
+      '/': <HomeSidebar />,
+      '/dashboard': <DashboardSidebar />,
+      '/safety': <SafetySidebar />,
+      '/community': <CommunitySidebar />,
+      '/safety-score': <SafetyScoreSidebar />,
+      '/report-scam': <ReportScamSidebar />,
+      '/reported-scams': <ReportedScamsSidebar />,
+      '/saved-scams': <SavedScamsSidebar />,
+      '/profile': <ProfileSidebar />,
+      '/settings': <SettingsSidebar />,
+      '/about': <AboutSidebar />,
+      '/partners': <PartnersSidebar />,
+      '/contact': <ContactSidebar />,
+      '/educational': <EducationalSidebar />,
+    };
+
+    // Check for paths that start with '/scam/' or '/resources'
     if (path.startsWith('/scam/')) {
       return <ScamDetailsSidebar />;
-    }
-    if (path === '/safety-score') {
-      return <SafetyScoreSidebar />;
-    }
-    if (path === '/reported-scams') {
-      return <ReportedScamsSidebar />;
-    }
-    if (path === '/saved-scams') {
-      return <SavedScamsSidebar />;
-    }
-    if (path === '/profile') {
-      return <ProfileSidebar />;
-    }
-    if (path === '/settings') {
-      return <SettingsSidebar />;
     }
     if (path.startsWith('/resources')) {
       return <ResourcesSidebar />;
     }
-    if (path === '/about') {
-      return <AboutSidebar />;
-    }
-    if (path === '/partners') {
-      return <PartnersSidebar />;
-    }
-    if (path === '/report-scam') {
-      return <ReportScamSidebar />;
-    }
-    if (path === '/contact') {
-      return <ContactSidebar />;
-    }
-    if (path === '/educational') {
-      return <EducationalSidebar />;
-    }
 
-    return null;
+    // Return the corresponding sidebar or null if not found
+    return sidebarMap[path] || null;
   };
 
   return (

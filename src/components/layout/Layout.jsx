@@ -9,9 +9,10 @@ import {
   IconButton,
   Avatar,
   Popper,
+  Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, logout } from "../../store/slices/authSlice";
@@ -21,11 +22,29 @@ import RightSideBar from "./RightSideBar";
 import UserMenu from "./UserMenu";
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
+import styled from '@emotion/styled';
 
 /**
  * Layout Component - Main layout wrapper for the application
  * Handles the overall structure including header, navigation, and responsive behavior
  */
+const GradientButton = styled(Button)(({ theme }) => ({
+  height: 36,
+  textTransform: 'none',
+  fontSize: '0.75rem',
+  fontWeight: 600,
+  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+  color: theme.palette.common.white,
+  boxShadow: `0 2px 8px ${alpha(theme.palette.primary.main, 0.25)}`,
+  '&:hover': {
+    background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`,
+    boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.35)}`,
+  },
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+}));
+
 const Layout = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -174,7 +193,7 @@ const Layout = () => {
               </Box>
             ) : (
               <>
-                <Button
+                {/* <Button
                   variant="outlined"
                   sx={{ marginRight: 1, height: "36px" }}
                   size="small"
@@ -182,19 +201,62 @@ const Layout = () => {
                   to="/login"
                 >
                   Login
-                </Button>
+                </Button> */}
                 {/* Sign Up button - Hidden on mobile */}
                 {!isSmallScreen && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    sx={{ height: "36px" }}
-                    component={Link}
-                    to="/signup"
+                  <Tooltip 
+                    title={
+                      <Typography sx={{ p: 0.5, fontSize: '0.75rem' }}>
+                        Sign up feature is coming soon! Stay tuned for updates.
+                      </Typography>
+                    } 
+                    arrow 
+                    placement="bottom"
                   >
-                    Sign Up
-                  </Button>
+                    <GradientButton
+                      size="small"
+                      onClick={() => {}} // Empty function to maintain clickable appearance
+                      sx={{ 
+                        position: 'relative',
+                        overflow: 'hidden',
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          animation: 'shine 2s infinite linear',
+                        },
+                        '@keyframes shine': {
+                          '0%': {
+                            transform: 'translateX(-100%)',
+                          },
+                          '100%': {
+                            transform: 'translateX(100%)',
+                          },
+                        },
+                      }}
+                    >
+                      <Box>
+                        Sign Up
+                        </Box>
+                        <Typography
+                          component="span"
+                          sx={{
+                            fontSize: '0.7rem',
+                            bgcolor: 'rgba(255, 255, 255, 0.2)',
+                            px: 0.8,
+                            py: 0.2,
+                            borderRadius: '10px',
+                            border: '1px solid rgba(255, 255, 255, 0.3)',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                          }}
+                        >
+                          Coming Soon
+                        </Typography>
+                    </GradientButton>
+                  </Tooltip>
                 )}
               </>
             )}

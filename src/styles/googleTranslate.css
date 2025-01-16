@@ -1,0 +1,45 @@
+/* Hide Google Translate elements but keep functionality */
+.goog-te-banner-frame,
+.skiptranslate,
+#google_translate_element {
+  display: none !important;
+}
+
+/* Remove the top margin added by Google Translate */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* Hide Google Translate's default toolbar */
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+/* Hide the white background from translated text */
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Fix for translated text positioning */
+.translated-ltr,
+.translated-rtl {
+  margin-top: 0 !important;
+}
+
+/* Hide Google branding */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+/* Hide all Google Translate popups */
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
