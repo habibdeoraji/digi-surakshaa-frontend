@@ -13,7 +13,6 @@ import {
   Community,
   Resources,
   FaqSection,
-  Blog,
   Features,
   Dashboard,
   AboutUs,
@@ -26,6 +25,7 @@ import {
   Signup,
   ForgotPassword
 } from './pages';
+import Articles from './pages/Articles';
 
 function App() {
   return (
@@ -37,16 +37,16 @@ function App() {
           <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="scam/:id" element={<ScamDetails />} />
-          <Route path="safety" element={<Safety />} />
           <Route path="community" element={
             <ProtectedRoute>
               <Community />
             </ProtectedRoute>
           } />
           <Route path="resources" element={<Resources />} />
-          <Route path="resources/educational" element={<Educational />} />
+          <Route path="educational" element={<Educational />} />
           <Route path="resources/faq" element={<FaqSection />} />
-          <Route path="resources/blog" element={<Blog />} />
+          <Route path="resources/articles" element={<Articles />} />
+          <Route path="resources/safety" element={<Safety />} />
           <Route path="resources/features" element={<Features />} />
           <Route path="dashboard" element={
             <ProtectedRoute>

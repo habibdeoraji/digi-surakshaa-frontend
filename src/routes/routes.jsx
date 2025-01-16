@@ -1,12 +1,8 @@
 import {
   HomeIcon,
-  SecurityIcon,
   GroupsIcon,
   LibraryBooksIcon,
   SchoolIcon,
-  HelpOutlineIcon,
-  ArticleIcon,
-  InfoIcon,
   BusinessIcon,
   HandshakeIcon,
   ContactMailIcon,
@@ -27,12 +23,6 @@ export const routes = [
     isProtected: false,
   },
   {
-    label: "Safety",
-    icon: SecurityIcon,
-    path: "/safety",
-    isProtected: false,
-  },
-  {
     label: "Community",
     icon: GroupsIcon,
     path: "/community",
@@ -43,31 +33,12 @@ export const routes = [
     icon: LibraryBooksIcon,
     path: "/resources",
     isProtected: false,
-    children: [
-      {
-        label: "Educational",
-        icon: SchoolIcon,
-        path: "/resources/educational",
-      },
-      {
-        label: "FAQ",
-        icon: HelpOutlineIcon,
-        path: "/resources/faq",
-        isProtected: false,
-      },
-      {
-        label: "Blog",
-        icon: ArticleIcon,
-        path: "/resources/blog",
-        isProtected: false,
-      },
-      {
-        label: "Features",
-        icon: InfoIcon,
-        path: "/resources/features",
-        isProtected: false,
-      },
-    ],
+  },
+  {
+    label: "Educational",
+    icon: SchoolIcon,
+    path: "/educational",
+    isProtected: false,
   },
   {
     label: "About Us",

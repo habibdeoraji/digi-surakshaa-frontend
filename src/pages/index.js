@@ -1,5 +1,5 @@
 export { default as AboutUs } from './AboutUs';
-export { default as Blog } from './Blog';
+export { default as Articles } from './Articles';
 export { default as Community } from './Community';
 export { default as Contact } from './Contact';
 export { default as Dashboard } from './Dashboard';

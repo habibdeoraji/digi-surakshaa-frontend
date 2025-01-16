@@ -1,106 +1,180 @@
-import { Box, Typography, Container, Card, Grid, Paper } from '@mui/material';
-import SecurityIcon from '@mui/icons-material/Security';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import GroupsIcon from '@mui/icons-material/Groups';
-import TranslateIcon from '@mui/icons-material/Translate';
-
-const features = [
-  {
-    title: "Real-time Threat Detection",
-    icon: SecurityIcon,
-    description: "Advanced algorithms to detect and alert you about potential cyber threats and scams in real-time."
-  },
-  {
-    title: "Instant Alerts",
-    icon: NotificationsIcon,
-    description: "Get immediate notifications about suspicious activities and emerging cyber threats in your area."
-  },
-  {
-    title: "Scam Analytics",
-    icon: AnalyticsIcon,
-    description: "Comprehensive analytics and insights about latest scam patterns and prevention measures."
-  },
-  {
-    title: "Verified Resources",
-    icon: VerifiedUserIcon,
-    description: "Access to verified educational content and security guidelines from cyber experts."
-  },
-  {
-    title: "Community Support",
-    icon: GroupsIcon,
-    description: "Connect with a community of users to share experiences and stay informed about cyber safety."
-  },
-  {
-    title: "Multi-language Support",
-    icon: TranslateIcon,
-    description: "Access all features in multiple Indian languages for better understanding and reach."
-  }
-];
+import { Box, Typography, Card, CardContent, Grid, Stack, LinearProgress, Button } from '@mui/material';
+import {
+  Security as SecurityIcon,
+  Assessment as AssessmentIcon,
+  NotificationsActive as AlertIcon,
+  People as CommunityIcon,
+  School as EducationIcon,
+  Analytics as AnalyticsIcon,
+  Verified as VerifiedIcon,
+  SupportAgent as SupportIcon,
+} from '@mui/icons-material';
 
 const Features = () => {
+  const features = [
+    {
+      title: "Safety Score",
+      description: "Get a personalized safety assessment and recommendations to improve your digital security.",
+      icon: AssessmentIcon,
+      color: "#2196F3",
+      progress: 85,
+      status: "Available"
+    },
+    {
+      title: "Scam Alert System",
+      description: "Real-time notifications about new scams and threats in your area.",
+      icon: AlertIcon,
+      color: "#F44336",
+      progress: 100,
+      status: "Active"
+    },
+    {
+      title: "Community Support",
+      description: "Connect with others, share experiences, and learn from the community.",
+      icon: CommunityIcon,
+      color: "#4CAF50",
+      progress: 90,
+      status: "Available"
+    },
+    {
+      title: "Educational Resources",
+      description: "Access comprehensive learning materials about online safety and scam prevention.",
+      icon: EducationIcon,
+      color: "#FF9800",
+      progress: 95,
+      status: "Available"
+    },
+    {
+      title: "Scam Verification",
+      description: "Verify suspicious activities and get expert opinions quickly.",
+      icon: VerifiedIcon,
+      color: "#9C27B0",
+      progress: 100,
+      status: "Active"
+    },
+    {
+      title: "Analytics Dashboard",
+      description: "Track and analyze scam patterns in your region.",
+      icon: AnalyticsIcon,
+      color: "#00BCD4",
+      progress: 80,
+      status: "Beta"
+    },
+    {
+      title: "24/7 Support",
+      description: "Get help anytime with our dedicated support team.",
+      icon: SupportIcon,
+      color: "#795548",
+      progress: 100,
+      status: "Available"
+    },
+    {
+      title: "Security Assessment",
+      description: "Regular security checkups and vulnerability assessments.",
+      icon: SecurityIcon,
+      color: "#607D8B",
+      progress: 75,
+      status: "Beta"
+    }
+  ];
+
   return (
-    <Container>
-      <Card elevation={3}>
-        <Box sx={{ py: 6, px: 4 }}>
-          <Typography variant="h3" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-            Our Features
-          </Typography>
-          <Typography variant="h6" align="center" sx={{ mb: 6 }} color="text.secondary">
-            Comprehensive Tools for Your Digital Safety
-          </Typography>
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
+      {/* Header */}
+      <Stack spacing={2} sx={{ mb: 5 }}>
+        <Typography variant="h4" fontWeight="500">
+          Platform Features
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600 }}>
+          Explore our comprehensive suite of tools and features designed to enhance your online safety
+        </Typography>
+      </Stack>
 
-          <Grid container spacing={4}>
-            {features.map((feature, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <Paper 
-                  sx={{ 
-                    p: 3,
-                    height: '100%',
-                    transition: 'transform 0.2s',
-                    '&:hover': {
-                      transform: 'translateY(-4px)',
-                      boxShadow: (theme) => theme.shadows[4]
-                    }
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
-                    <feature.icon 
-                      sx={{ 
-                        fontSize: 40, 
-                        color: 'primary.main',
-                        mr: 2 
-                      }} 
-                    />
-                    <Box>
-                      <Typography variant="h5" gutterBottom>
-                        {feature.title}
-                      </Typography>
-                      <Typography variant="body1" color="text.secondary">
-                        {feature.description}
-                      </Typography>
-                    </Box>
+      {/* Features Grid */}
+      <Grid container spacing={3}>
+        {features.map((feature) => (
+          <Grid item xs={12} md={6} lg={4} key={feature.title}>
+            <Card 
+              sx={{ 
+                height: '100%',
+                transition: 'transform 0.2s',
+                '&:hover': {
+                  transform: 'translateY(-4px)',
+                  boxShadow: (theme) => `0 8px 24px ${theme.palette.action.hover}`
+                }
+              }}
+            >
+              <CardContent sx={{ 
+                p: 3, 
+                height: '320px', 
+                display: 'flex', 
+                flexDirection: 'column' 
+              }}>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
+                  <Box 
+                    sx={{ 
+                      p: 1.5,
+                      borderRadius: 2,
+                      bgcolor: `${feature.color}15`,
+                      mr: 2
+                    }}
+                  >
+                    <feature.icon sx={{ color: feature.color }} />
                   </Box>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography variant="h6" gutterBottom>
+                      {feature.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {feature.description}
+                    </Typography>
+                  </Box>
+                </Box>
 
-          {/* Feature Highlights */}
-          <Box sx={{ mt: 8 }}>
-            <Typography variant="h4" gutterBottom align="center">
-              Why Choose Our Platform?
-            </Typography>
-            <Typography variant="body1" paragraph align="center" sx={{ maxWidth: 800, mx: 'auto', mt: 3 }}>
-              Our platform combines advanced technology with user-friendly interfaces to provide 
-              comprehensive digital security solutions. We focus on prevention, education, and 
-              quick response to keep you safe in the digital world.
-            </Typography>
-          </Box>
-        </Box>
-      </Card>
-    </Container>
+                <Box sx={{ mt: 'auto', pt: 3 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                    <Typography variant="caption" color="text.secondary">
+                      Implementation Status
+                    </Typography>
+                    <Typography variant="caption" fontWeight="500" color={feature.color}>
+                      {feature.status}
+                    </Typography>
+                  </Box>
+                  <LinearProgress 
+                    variant="determinate" 
+                    value={feature.progress}
+                    sx={{ 
+                      height: 6,
+                      borderRadius: 1,
+                      bgcolor: `${feature.color}15`,
+                      '& .MuiLinearProgress-bar': {
+                        bgcolor: feature.color
+                      }
+                    }} 
+                  />
+
+                  <Button 
+                    variant="outlined"
+                    fullWidth
+                    sx={{ 
+                      mt: 2,
+                      borderColor: feature.color,
+                      color: feature.color,
+                      '&:hover': {
+                        borderColor: feature.color,
+                        bgcolor: `${feature.color}15`
+                      }
+                    }}
+                  >
+                    Learn More
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
