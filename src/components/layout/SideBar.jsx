@@ -7,11 +7,12 @@ import {
   useTheme,
   alpha,
   Button,
+  Tooltip,
 } from "@mui/material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { CloseIcon, ReportProblemIcon } from "../../assets/icons";
+import { CloseIcon } from "../../assets/icons";
 import { routes } from "../../routes/routes";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/slices/authSlice";
@@ -74,7 +75,6 @@ const MenuText = styled(Typography)(({ active, theme }) => ({
   color: "inherit",
 }));
 
-
 const CloseButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.primary.main,
   padding: theme.spacing(1),
@@ -88,21 +88,19 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const ReportScamButton = styled(Button)(({ theme }) => ({
-  position: 'absolute',
-  bottom: theme.spacing(3),
-  left: theme.spacing(2),
-  right: theme.spacing(2),
   height: 42,
+  width: '90%',
+  margin: '0 auto',
   borderRadius: 21,
   textTransform: 'none',
-  fontSize: '0.875rem',
+  fontSize: '0.75rem',
   fontWeight: 600,
-  backgroundColor: theme.palette.primary.main,
+  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
   color: theme.palette.common.white,
-  boxShadow: 'none',
+  boxShadow: `0 2px 8px ${alpha(theme.palette.primary.main, 0.25)}`,
   '&:hover': {
-    backgroundColor: theme.palette.primary.dark,
-    boxShadow: `0 4px 8px 0 ${alpha(theme.palette.primary.main, 0.24)}`,
+    background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`,
+    boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.35)}`,
   },
   display: 'flex',
   alignItems: 'center',
@@ -113,7 +111,6 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle, isSmallScreen }) => {
   const theme = useTheme();
   const location = useLocation();
   const user = useSelector(selectCurrentUser);
-  const navigate = useNavigate();
 
   const isActive = (path) => {
     if (path === "/") {
@@ -144,7 +141,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle, isSmallScreen }) => {
     );
   };
 
-  const drawerContent = (
+const drawerContent = (
     <>
       {isSmallScreen && (
         <Box
@@ -161,19 +158,81 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle, isSmallScreen }) => {
           </CloseButton>
         </Box>
       )}
-      <List sx={{ padding: theme.spacing(2, 1) }}>
-        {routes.map((route) => renderMenuItem(route))}
-      </List>
-      <Box sx={{ pb: 7 }}>
-        <ReportScamButton
-          variant="contained"
-          onClick={() => navigate('/report-scam')}
-          startIcon={
-            <ReportProblemIcon sx={{ fontSize: 20 }} />
-          }
-        >
-          Report Scam
-        </ReportScamButton>
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: 'column',
+        height: '100%',
+        position: 'relative',
+        pb: 0
+      }}>
+        <List sx={{ padding: theme.spacing(2, 1) }}>
+          {routes.map((route) => renderMenuItem(route))}
+        </List>
+        
+        {/* Report Scam Button - Centered */}
+        <Box sx={{ 
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          mt: 'auto',
+          py: 3,
+          backgroundColor: 'background.paper',
+        }}>
+          <Tooltip 
+            title={
+              <Typography sx={{ p: 0.5, fontSize: '0.75rem' }}>
+                This exciting feature is launching soon! Stay tuned for updates.
+              </Typography>
+            } 
+            arrow 
+            placement="top"
+          >
+            <ReportScamButton
+              variant="contained"
+              onClick={() => {}}
+              sx={{ 
+                position: 'relative',
+                overflow: 'hidden',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  animation: 'shine 2s infinite linear',
+                },
+                '@keyframes shine': {
+                  '0%': {
+                    transform: 'translateX(-100%)',
+                  },
+                  '100%': {
+                    transform: 'translateX(100%)',
+                  },
+                },
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                Report Scam
+                <Typography
+                  component="span"
+                  sx={{
+                    fontSize: '0.7rem',
+                    bgcolor: 'rgba(255, 255, 255, 0.2)',
+                    px: 0.8,
+                    py: 0.2,
+                    borderRadius: '10px',
+                    ml: 0,
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                  }}
+                >
+                  Coming Soon
+                </Typography>
+              </Box>
+            </ReportScamButton>
+          </Tooltip>
+        </Box>
       </Box>
     </>
   );

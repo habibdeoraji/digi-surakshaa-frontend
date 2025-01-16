@@ -38,7 +38,7 @@ export const routes = [
     label: "Educational",
     icon: SchoolIcon,
     path: "/educational",
-    isProtected: false,
+    isProtected: true,
   },
   {
     label: "About Us",

@@ -9,9 +9,10 @@ import {
   IconButton,
   Avatar,
   Popper,
+  Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, logout } from "../../store/slices/authSlice";
@@ -21,11 +22,52 @@ import RightSideBar from "./RightSideBar";
 import UserMenu from "./UserMenu";
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
+import styled from '@emotion/styled';
 
 /**
  * Layout Component - Main layout wrapper for the application
  * Handles the overall structure including header, navigation, and responsive behavior
  */
+const GradientButton = styled(Button)(({ theme }) => ({
+  height: 36,
+  textTransform: 'none',
+  fontSize: '0.75rem',
+  fontWeight: 600,
+  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+  color: theme.palette.common.white,
+  boxShadow: `0 2px 8px ${alpha(theme.palette.primary.main, 0.25)}`,
+  '&:hover': {
+    background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`,
+    boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.35)}`,
+  },
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+}));
+
+const LogoText = styled(Typography)(({ theme, isSmallScreen }) => ({
+  fontWeight: 800,
+  fontSize: isSmallScreen ? "1.25rem" : "1.5rem",
+  position: isSmallScreen ? 'absolute' : 'static',
+  left: '50%',
+  transform: isSmallScreen ? 'translateX(-50%)' : 'none',
+  width: isSmallScreen ? 'auto' : 'unset',
+  background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  letterSpacing: '0.5px',
+  fontFamily: "'Poppins', sans-serif",
+  display: 'flex',
+  alignItems: 'center',
+  gap: '4px',
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)',
+  '& .highlight': {
+    color: theme.palette.primary.main,
+    WebkitTextFillColor: 'initial',
+    fontWeight: 900,
+  }
+}));
+
 const Layout = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -90,40 +132,60 @@ const Layout = () => {
             display: "flex",
             justifyContent: "space-between",
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.1)",
+            position: 'relative',
           }}
         >
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle - Position it absolutely */}
           {isSmallScreen && (
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
+              sx={{ 
+                position: 'absolute',
+                left: 8,
+              }}
             >
               <MenuIcon />
             </IconButton>
           )}
 
-          {/* Logo/Brand - Hidden on mobile */}
-          {!isSmallScreen && (
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: 700, fontSize: "1.5rem" }}
-            >
-              Digi Suraksha
-            </Typography>
-          )}
+          {/* Logo/Brand - Show on all screens and center on mobile */}
+          <LogoText variant="h6" isSmallScreen={isSmallScreen}>
+            <span>Digi</span>
+            <span className="highlight">Suraksha</span>
+            {!isSmallScreen && (
+              <Box
+                component="span"
+                sx={{
+                  fontSize: '10px',
+                  bgcolor: (theme) => alpha(theme.palette.primary.main, 0.1),
+                  color: 'primary.main',
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: '12px',
+                  ml: 1,
+                  fontWeight: 600,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  WebkitTextFillColor: 'initial',
+                }}
+              >
+                Beta
+              </Box>
+            )}
+          </LogoText>
 
-          {/* Right Section: Language & Auth Buttons */}
+          {/* Right Section: Auth Buttons */}
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              ml: 'auto',
             }}
           >
-
             {/* Conditional Auth Buttons */}
             {user ? (
               <Box sx={{ position: 'relative' }}>
@@ -174,7 +236,7 @@ const Layout = () => {
               </Box>
             ) : (
               <>
-                <Button
+                {/* <Button
                   variant="outlined"
                   sx={{ marginRight: 1, height: "36px" }}
                   size="small"
@@ -182,19 +244,62 @@ const Layout = () => {
                   to="/login"
                 >
                   Login
-                </Button>
+                </Button> */}
                 {/* Sign Up button - Hidden on mobile */}
                 {!isSmallScreen && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    sx={{ height: "36px" }}
-                    component={Link}
-                    to="/signup"
+                  <Tooltip 
+                    title={
+                      <Typography sx={{ p: 0.5, fontSize: '0.75rem' }}>
+                        Sign up feature is coming soon! Stay tuned for updates.
+                      </Typography>
+                    } 
+                    arrow 
+                    placement="bottom"
                   >
-                    Sign Up
-                  </Button>
+                    <GradientButton
+                      size="small"
+                      onClick={() => {}} // Empty function to maintain clickable appearance
+                      sx={{ 
+                        position: 'relative',
+                        overflow: 'hidden',
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          animation: 'shine 2s infinite linear',
+                        },
+                        '@keyframes shine': {
+                          '0%': {
+                            transform: 'translateX(-100%)',
+                          },
+                          '100%': {
+                            transform: 'translateX(100%)',
+                          },
+                        },
+                      }}
+                    >
+                      <Box>
+                        Sign Up
+                        </Box>
+                        <Typography
+                          component="span"
+                          sx={{
+                            fontSize: '0.7rem',
+                            bgcolor: 'rgba(255, 255, 255, 0.2)',
+                            px: 0.8,
+                            py: 0.2,
+                            borderRadius: '10px',
+                            border: '1px solid rgba(255, 255, 255, 0.3)',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                          }}
+                        >
+                          Coming Soon
+                        </Typography>
+                    </GradientButton>
+                  </Tooltip>
                 )}
               </>
             )}
