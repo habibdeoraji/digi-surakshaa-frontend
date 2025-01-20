@@ -133,6 +133,7 @@ const Layout = () => {
             justifyContent: "space-between",
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.1)",
             position: 'relative',
+            padding: '4px 0',
           }}
         >
           {/* Mobile Menu Toggle - Position it absolutely */}
@@ -153,6 +154,7 @@ const Layout = () => {
 
           {/* Logo/Brand - Show on all screens and center on mobile */}
           <LogoText variant="h6" isSmallScreen={isSmallScreen}>
+            <img src="/ds-logo.svg" alt="Digi Suraksha Logo" style={{ width: '64px', height: '64px' }} />
             <span>Digi</span>
             <span className="highlight">Suraksha</span>
             {!isSmallScreen && (

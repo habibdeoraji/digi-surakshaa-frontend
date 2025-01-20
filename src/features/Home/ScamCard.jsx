@@ -25,24 +25,33 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowForward as ArrowForwardIcon } from "@mui/icons-material";
 
+// Updated color configuration for different risk levels
 const criticalLevelConfig = {
   low: {
     color: "#4CAF50",
+    bgColor: "#E8F5E9",
+    borderColor: "#A5D6A7",
     icon: ErrorOutlineIcon,
     label: "Low Risk",
   },
   medium: {
     color: "#FF9800",
+    bgColor: "#FFF3E0",
+    borderColor: "#FFB74D",
     icon: WarningAmberIcon,
     label: "Medium Risk",
   },
   high: {
-    color: "#f44336",
+    color: "#F44336",
+    bgColor: "#FFEBEE",
+    borderColor: "#EF9A9A",
     icon: ReportProblemIcon,
     label: "High Risk",
   },
   critical: {
-    color: "#b71c1c",
+    color: "#D32F2F",
+    bgColor: "#FFCDD2",
+    borderColor: "#E57373",
     icon: ReportIcon,
     label: "Critical Risk",
   },
@@ -54,6 +63,9 @@ const ScamCard = ({ scam, loading = false }) => {
   const [isBookmarked, setIsBookmarked] = useState(scam.isBookmarked);
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [expanded, setExpanded] = useState(false);
+
+  const levelConfig = criticalLevelConfig[scam.criticalLevel];
+  const CriticalIcon = levelConfig.icon;
 
   const handleShare = (platform) => {
     const shareText = `🚨 Scam Alert: ${scam.title} - ${scam.description}`;
@@ -87,90 +99,95 @@ const ScamCard = ({ scam, loading = false }) => {
     setShowShareOptions(false);
   };
 
-  const CriticalIcon = criticalLevelConfig[scam.criticalLevel].icon;
-
   const handleViewDetails = () => {
     navigate(`/scam/${scam.id}`);
   };
 
   return (
-    <Card elevation={3}>
+    <Card
+      elevation={0}
+      sx={{
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: 2,
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+          borderColor: levelConfig.borderColor,
+        },
+      }}
+    >
       <Box sx={{ p: 3 }}>
         {/* Header */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            mb: 2,
-          }}
-        >
-          <Box sx={{ flex: 1 }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-              <Typography variant="h5">{scam.title}</Typography>
-              <Tooltip title={criticalLevelConfig[scam.criticalLevel].label}>
-                <CriticalIcon
-                  sx={{
-                    color: criticalLevelConfig[scam.criticalLevel].color,
-                    fontSize: 24,
-                  }}
-                />
-              </Tooltip>
-            </Box>
-            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-              <Chip
-                icon={<ReportIcon />}
-                label={`${scam.reportCount} reports`}
-                size="small"
-                color="error"
-                variant="outlined"
-              />
-              <Chip
-                label={scam.category}
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-            </Box>
-          </Box>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Tooltip title="Share">
-              <IconButton
-                size="small"
-                onClick={() => setShowShareOptions(!showShareOptions)}
-              >
-                <ShareIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={isBookmarked ? "Remove bookmark" : "Bookmark"}>
-              <IconButton
-                size="small"
-                onClick={() => setIsBookmarked(!isBookmarked)}
-              >
-                {isBookmarked ? (
-                  <BookmarkIcon fontSize="small" color="primary" />
-                ) : (
-                  <BookmarkBorderIcon fontSize="small" />
-                )}
-              </IconButton>
-            </Tooltip>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+          <Chip
+            icon={<CriticalIcon />}
+            label={levelConfig.label}
+            size="small"
+            sx={{
+              bgcolor: levelConfig.bgColor,
+              color: levelConfig.color,
+              borderRadius: 1,
+              '& .MuiChip-icon': {
+                color: 'inherit',
+              },
+              fontWeight: 500,
+            }}
+          />
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <IconButton
+              size="small"
+              onClick={() => setShowShareOptions(!showShareOptions)}
+              sx={{
+                color: 'action.active',
+                '&:hover': {
+                  bgcolor: `${theme.palette.primary.main}15`,
+                  color: theme.palette.primary.main,
+                },
+              }}
+            >
+              <ShareIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              size="small"
+              onClick={() => setIsBookmarked(!isBookmarked)}
+              sx={{
+                color: isBookmarked ? 'primary.main' : 'action.active',
+                '&:hover': {
+                  bgcolor: `${theme.palette.primary.main}15`,
+                  color: theme.palette.primary.main,
+                },
+              }}
+            >
+              {isBookmarked ? (
+                <BookmarkIcon fontSize="small" />
+              ) : (
+                <BookmarkBorderIcon fontSize="small" />
+              )}
+            </IconButton>
           </Box>
         </Box>
 
+        {/* Title */}
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+          {scam.title}
+        </Typography>
+
         {/* Share Options */}
         <Collapse in={showShareOptions}>
-          <Box sx={{ mb: 2, display: "flex", gap: 1 }}>
-            {["whatsapp", "twitter", "facebook"].map((platform) => (
+          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+            {['whatsapp', 'twitter', 'facebook'].map((platform) => (
               <Button
                 key={platform}
                 size="small"
                 variant="outlined"
                 onClick={() => handleShare(platform)}
                 sx={{
-                  minWidth: "auto",
-                  px: 1,
-                  py: 0.5,
-                  textTransform: "capitalize",
+                  borderRadius: 1,
+                  textTransform: 'capitalize',
+                  borderColor: 'divider',
+                  px: 2,
                 }}
               >
                 {platform}
@@ -179,14 +196,29 @@ const ScamCard = ({ scam, loading = false }) => {
           </Box>
         </Collapse>
 
-        {/* Content */}
-        <Typography variant="body1" sx={{ mt: 2 }}>
+        {/* Description */}
+        <Typography 
+          variant="body2" 
+          color="text.secondary"
+          sx={{ 
+            mb: 2,
+            lineHeight: 1.6
+          }}
+        >
           {expanded ? scam.description : `${scam.description.slice(0, 150)}...`}
         </Typography>
+
         <Button
           size="small"
-          variant="text"
-          sx={{ p: 0, mb: 2 }}
+          sx={{
+            p: 0,
+            mb: 2,
+            color: theme.palette.primary.main,
+            '&:hover': {
+              bgcolor: 'transparent',
+              color: theme.palette.primary.dark,
+            },
+          }}
           onClick={() => setExpanded(!expanded)}
           endIcon={expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         >
@@ -200,16 +232,21 @@ const ScamCard = ({ scam, loading = false }) => {
               key={tag}
               label={tag}
               size="small"
-              variant="outlined"
-              sx={{ borderRadius: 1 }}
+              sx={{
+                borderRadius: 1,
+                bgcolor: `${theme.palette.primary.main}08`,
+                color: theme.palette.primary.main,
+                border: '1px solid',
+                borderColor: `${theme.palette.primary.main}20`,
+              }}
             />
           ))}
         </Box>
 
-        <Divider />
+        <Divider sx={{ my: 2 }} />
 
-        {/* Footer Info */}
-        <Box sx={{ mt: 2 }}>
+        {/* Footer */}
+        <Box>
           <Box
             sx={{
               display: "flex",
@@ -219,11 +256,15 @@ const ScamCard = ({ scam, loading = false }) => {
               mb: 2,
             }}
           >
-            <Typography variant="body2">📍 {scam.location}</Typography>
-            <Typography variant="body2">
+            <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              📍 {scam.location}
+            </Typography>
+            <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               📅 {new Date(scam.date).toLocaleDateString()}
             </Typography>
-            <Typography variant="body2">💰 Loss: {scam.moneyLost}</Typography>
+            <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              💰 Loss: {scam.moneyLost}
+            </Typography>
           </Box>
 
           <Box
@@ -237,19 +278,22 @@ const ScamCard = ({ scam, loading = false }) => {
               Source: {scam.source}
             </Typography>
             <Button
-              variant="outlined" // Changed to contained for a more prominent button
+              variant="contained"
+              size="small"
               endIcon={<ArrowForwardIcon />}
               onClick={handleViewDetails}
               sx={{
-                borderRadius: "4px", // Increased border radius for a softer appearance
-                padding: '1px 8px', // Added padding for better touch target
-                color: theme.palette.primary.dark,
-                fontSize: '0.75rem',
-                fontWeight: 400,
+                borderRadius: 1,
                 textTransform: 'none',
-                border: `1px solid ${theme.palette.primary.dark}`,
+                boxShadow: 'none',
+                bgcolor: levelConfig.bgColor,
+                color: levelConfig.color,
+                border: '1px solid',
+                borderColor: levelConfig.borderColor,
                 '&:hover': {
-                border: `1px solid ${theme.palette.primary.dark}`,
+                  bgcolor: levelConfig.bgColor,
+                  opacity: 0.9,
+                  boxShadow: 'none',
                 },
               }}
             >
