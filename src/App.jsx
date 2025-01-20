@@ -29,6 +29,7 @@ import {
 } from "./pages";
 import Articles from "./pages/Articles";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -49,7 +50,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="contact" element={<Contact />} />
 
-          {/* TODO: Add Auth related routes in the next phase */}
+          {/* TODO: Add Auth related routes in the next phas */}
           {/* <Route path="educational" element={<Educational />} /> */}
           {/* <Route
             path="community"
