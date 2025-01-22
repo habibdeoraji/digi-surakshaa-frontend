@@ -22,7 +22,6 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowForward as ArrowForwardIcon } from "@mui/icons-material";
 
 // Updated color configuration for different risk levels
 const criticalLevelConfig = {
@@ -105,11 +104,13 @@ const ScamCard = ({ scam, loading = false }) => {
   return (
     <Card
       elevation={0}
+      onClick={handleViewDetails}
       sx={{
         border: '1px solid',
         borderColor: 'divider',
         borderRadius: 2,
         transition: 'all 0.3s ease',
+        cursor: 'pointer',
         '&:hover': {
           transform: 'translateY(-4px)',
           boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
@@ -137,7 +138,10 @@ const ScamCard = ({ scam, loading = false }) => {
           <Box sx={{ display: 'flex', gap: 1 }}>
             <IconButton
               size="small"
-              onClick={() => setShowShareOptions(!showShareOptions)}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent card click when clicking share
+                setShowShareOptions(!showShareOptions);
+              }}
               sx={{
                 color: 'action.active',
                 '&:hover': {
@@ -150,7 +154,10 @@ const ScamCard = ({ scam, loading = false }) => {
             </IconButton>
             <IconButton
               size="small"
-              onClick={() => setIsBookmarked(!isBookmarked)}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent card click when clicking bookmark
+                setIsBookmarked(!isBookmarked);
+              }}
               sx={{
                 color: isBookmarked ? 'primary.main' : 'action.active',
                 '&:hover': {
@@ -181,7 +188,10 @@ const ScamCard = ({ scam, loading = false }) => {
                 key={platform}
                 size="small"
                 variant="outlined"
-                onClick={() => handleShare(platform)}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent card click when clicking share button
+                  handleShare(platform);
+                }}
                 sx={{
                   borderRadius: 1,
                   textTransform: 'capitalize',
@@ -218,7 +228,10 @@ const ScamCard = ({ scam, loading = false }) => {
               color: theme.palette.primary.dark,
             },
           }}
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent card click when clicking button
+            setExpanded(!expanded);
+          }}
           endIcon={expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         >
           {expanded ? "Show less" : "Read more"}
@@ -246,26 +259,51 @@ const ScamCard = ({ scam, loading = false }) => {
 
         {/* Footer */}
         <Box>
+          {/* Top row: Location and Source */}
           <Box
             sx={{
               display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              color: "text.secondary",
-              mb: 2,
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 1,
             }}
           >
-            <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              📍 {scam.location}
-            </Typography>
-            <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              📅 {new Date(scam.date).toLocaleDateString()}
-            </Typography>
-            <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              💰 Loss: {scam.moneyLost}
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              <Typography 
+                variant="caption" 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 0.5,
+                  color: 'text.secondary',
+                  bgcolor: (theme) => theme.palette.grey[50],
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: 1,
+                }}
+              >
+                📍 {scam.location}
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              <Typography 
+                variant="caption" 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center',
+                  color: 'text.secondary',
+                  bgcolor: (theme) => theme.palette.grey[50],
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: 1,
+                }}
+              >
+                Source: {scam.source}
+              </Typography>
+            </Box>
           </Box>
 
+          {/* Bottom row: Date and Money Loss */}
           <Box
             sx={{
               display: "flex",
@@ -273,31 +311,31 @@ const ScamCard = ({ scam, loading = false }) => {
               alignItems: "center",
             }}
           >
-            <Typography variant="caption" color="text.secondary">
-              Source: {scam.source}
-            </Typography>
-            <Button
-              variant="contained"
-              size="small"
-              endIcon={<ArrowForwardIcon />}
-              onClick={handleViewDetails}
-              sx={{
-                borderRadius: 1,
-                textTransform: 'none',
-                boxShadow: 'none',
-                bgcolor: levelConfig.bgColor,
+            <Typography 
+              variant="caption" 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 0.5,
                 color: levelConfig.color,
-                border: '1px solid',
-                borderColor: levelConfig.borderColor,
-                '&:hover': {
-                  bgcolor: levelConfig.bgColor,
-                  opacity: 0.9,
-                  boxShadow: 'none',
-                },
+                fontWeight: 500,
               }}
             >
-              View Details
-            </Button>
+              💰 Loss: {scam.moneyLost}
+            </Typography>
+            <Typography 
+              variant="caption" 
+              sx={{ 
+                color: 'text.secondary',
+                fontStyle: 'italic',
+              }}
+            >
+              Reported on {new Date(scam.date).toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+              })}
+            </Typography>
           </Box>
         </Box>
       </Box>

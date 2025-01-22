@@ -1,0 +1,62 @@
+{
+    "title": "Scams in India (2024)",
+    "scams": [
+      {
+        "title": "Digital Arrest Scam",
+        "description": "Scamsters posed as law enforcement officers, accusing victims of serious crimes and threatening imminent arrest. They extorted money from victims under the pretense of resolving legal issues. Senior bureaucrats and judges were also targeted. Over 92,323 cases were reported in 2024."
+      },
+      {
+        "title": "TRAI Fraud Calls",
+        "description": "Scammers impersonated TRAI officials, threatening victims with SIM deactivation. They extracted sensitive information like bank details and PAN numbers, which were used to siphon money from accounts."
+      },
+      {
+        "title": "Online Investment Scams",
+        "description": "Scammers approached victims via social media, promising high returns on investments. Victims transferred funds to mule accounts, only to find they had been defrauded."
+      },
+      {
+        "title": "Dating Fraud",
+        "description": "Scammers created fake profiles on dating apps to extract compromising information and demand ransom. Offline scams involved scammers inviting victims on dates to high-end pubs or restaurants, leaving them with inflated bills."
+      },
+      {
+        "title": "Foreign Employment Scams",
+        "description": "Victims were lured by promises of high-paying jobs abroad. Many were taken hostage in countries like Cambodia and Vietnam, where they were forced into cybercrimes. Between January 2022 and May 2024, 29,466 Indians who traveled to Southeast Asia did not return."
+      },
+      {
+        "title": "Valmiki Corporation Scam",
+        "description": "Funds intended for Scheduled Tribes in Karnataka were misappropriated under MLA B Nagendra’s influence. Approximately Rs 187 crore was diverted to fake accounts. The scam came to light after the suicide of a senior employee."
+      },
+      {
+        "title": "OctaFX Scam",
+        "description": "The forex trading platform OctaFX, led by Russian national Pavel Prozorov, defrauded Indian investors of Rs 800 crore. The company manipulated trades, diverted funds into fake accounts, and frequently changed URLs to obscure its activities."
+      }
+    ],
+    "notable_incidents": [
+      {
+        "title": "Bengaluru Techie Scam",
+        "description": "A software engineer lost Rs 11 crore in a digital arrest scam, highlighting the scale of such frauds."
+      },
+      {
+        "title": "Unemployed Hyderabad Man Scam",
+        "description": "A victim scammed in stock trading received a Rs 39L refund, showcasing efforts to recover stolen funds."
+      },
+      {
+        "title": "Cambodia Trafficking",
+        "description": "25 trafficked Indian youths were rescued and returned home after falling prey to employment scams in Southeast Asia."
+      }
+    ],
+    "stats": {
+      "digital_arrest_cases": 92323,
+      "foreign_employment_victims": 29466,
+      "octafx_fraud_amount": "Rs 800 crore",
+      "valmiki_corporation_fraud_amount": "Rs 187 crore"
+    },
+    "tags": [
+      "Digital Arrest",
+      "TRAI Fraud",
+      "Investment Scams",
+      "Dating Fraud",
+      "Employment Scams",
+      "Valmiki Corporation Scam",
+      "OctaFX Scam"
+    ]
+  }

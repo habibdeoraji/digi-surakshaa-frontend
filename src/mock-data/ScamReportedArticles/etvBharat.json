@@ -1,0 +1,62 @@
+{
+  "title": "Yearender 2024: Tech And Cyber Scams That Shook India In 2024",
+  "author": "ETV Bharat Tech Team",
+  "published_date": "Dec 27, 2024, 3:59 PM IST",
+  "reading_time": "7 Min Read",
+  "summary": "The year 2024 saw a surge in tech scams impacting India, revealing the evolving and malicious nature of cybercrime. Over 14 lakh cybercrime cases were registered between January 1 and November 11. These incidents highlight the growing need for digital vigilance.",
+  "scams": [
+    {
+      "title": "Deep Fake Video Promotions",
+      "month": "January 2024",
+      "description": "A deepfake video featuring cricket legend Sachin Tendulkar falsely promoting a game called Skyward Aviator Quest surfaced online. Tendulkar denounced the video and called for action against misinformation."
+    },
+    {
+      "title": "Fake FedEx Courier Scam",
+      "month": "February 2024",
+      "description": "The CEO of a Bengaluru IT firm lost Rs 2.3 crore to scammers posing as FedEx executives and police officers, highlighting sophisticated methods of cyber fraud."
+    },
+    {
+      "title": "Fake Investment Scheme",
+      "month": "July 2024",
+      "description": "A 75-year-old retired manager from Telangana lost Rs 13 crore in a WhatsApp investment scam. Scammers lured the victim with promises of high returns."
+    },
+    {
+      "title": "Cyber Blackmail",
+      "month": "August 2024",
+      "description": "A 74-year-old man from Pune was blackmailed for Rs 97 lakh over five days by fraudsters posing as police officers. They used threats of legal action to extort money."
+    },
+    {
+      "title": "Fake Trading App",
+      "month": "August 2024",
+      "description": "A retired ship captain in Mumbai lost Rs 11.16 crore after being lured into investing via a fake trading app through a WhatsApp group."
+    },
+    {
+      "title": "Fake Supreme Court Hearing",
+      "month": "August 2024",
+      "description": "S P Oswal, a Padma Bhushan awardee, lost Rs 7 crore to scammers impersonating federal investigators and India's Chief Justice in a fabricated court hearing."
+    },
+    {
+      "title": "Digital Arrest Scams",
+      "month": "November 2024",
+      "description": "A software engineer in Bengaluru lost Rs 11.8 crore over 18 days to scammers alleging his Aadhaar was linked to criminal activities and threatening arrest."
+    }
+  ],
+  "statistics": {
+    "cybercrime_cases": "14 lakh",
+    "time_period": "January 1 to November 11, 2024"
+  },
+  "tips_to_stay_safe": [
+    "Verify the identity of individuals contacting you, especially if they claim to represent an organization.",
+    "Be cautious of deepfake videos and audio clips. Verify content through official channels.",
+    "Avoid investment schemes promising unusually high returns without thorough research.",
+    "Report suspicious calls or messages threatening legal action or demanding money.",
+    "Use reputable trading apps and platforms recognized by financial authorities."
+  ],
+  "tags": [
+    "Year Ender 2024",
+    "Tech Scams",
+    "Cyber Fraud",
+    "Indian Tech Scams 2024",
+    "Yearender 2024"
+  ]
+}

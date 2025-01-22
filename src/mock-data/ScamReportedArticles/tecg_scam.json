@@ -1,0 +1,72 @@
+{
+    "overview": {
+      "year": "2024",
+      "summary": "Scams surged in both number and sophistication, targeting individuals and businesses with new schemes. Cybercriminals exploited the rise of online platforms for shopping, banking, and socialising, devising clever ways to steal money."
+    },
+    "trends": {
+      "digital_arrest_scams": {
+        "description": "Fraudsters impersonate law enforcement or government officials, tricking victims into paying fake fines or resolving non-existent legal issues.",
+        "method": "Victims are contacted via phone, email, or messages, and threatened with immediate arrest if they don't comply.",
+        "effectiveness": "Scammers use fear, urgency, fake documents, and official-looking caller IDs to make the scam convincing."
+      },
+      "investment_scams": {
+        "description": "Scammers promise high returns on fake cryptocurrency projects and stock market opportunities.",
+        "method": "Fake websites and social media profiles are used to lure victims with fabricated success stories and testimonials.",
+        "impact": "Victims lose significant money as scammers disappear after investments are made."
+      },
+      "other_scams": [
+        {
+          "type": "Deepfake Scams",
+          "description": "AI-generated videos or audio impersonate trusted individuals, tricking victims into transferring money."
+        },
+        {
+          "type": "Online Job Offer Scams",
+          "description": "Prey on job seekers by promising lucrative roles in exchange for upfront fees."
+        },
+        {
+          "type": "QR Code Scams",
+          "description": "Fake QR codes redirect victims to malicious websites or steal financial data when scanned."
+        }
+      ]
+    },
+    "real_life_stories": [
+      {
+        "title": "Pune techie loses Rs 23 lakh",
+        "description": "Scammers posed as crime branch officials."
+      },
+      {
+        "title": "Mangaluru man loses Rs 42.4 lakh",
+        "description": "Scammer asked him to create a Telegram account."
+      },
+      {
+        "title": "Hong Kong-returned elderly man",
+        "description": "Fell victim to a fake CBI officer, losing Rs 10 lakh."
+      },
+      {
+        "title": "Retired IAF officer loses Rs 76.5 lakh",
+        "description": "Fell for a Facebook ad scam."
+      },
+      {
+        "title": "Kerala man loses Rs 4.05 crore",
+        "description": "Tricked into installing a fake investment app."
+      },
+      {
+        "title": "Bengaluru residents lose Rs 95 lakh",
+        "description": "Trusted deepfake videos of Mukesh Ambani and Narayana Murthy."
+      },
+      {
+        "title": "Woman loses Rs 23.5 lakh",
+        "description": "Victim of a work-from-home scam."
+      }
+    ],
+    "protection_tips": [
+      "Verify authenticity through official channels before acting on calls, emails, or messages.",
+      "Be skeptical of promises of high returns with low risks.",
+      "Use strong passwords and enable two-factor authentication (2FA).",
+      "Educate yourself about common scams and share this knowledge with others.",
+      "Report suspicious activity to the cybercrime unit."
+    ],
+    "conclusion": {
+      "message": "The surge in scams in 2024 is a reminder of the importance of vigilance in our digital lives. Staying informed and adopting smarter digital practices can help prevent scams in 2025."
+    }
+  }
