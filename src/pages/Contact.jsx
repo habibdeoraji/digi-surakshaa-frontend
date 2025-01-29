@@ -6,6 +6,7 @@ import {
   Button,
   Paper,
   Stack,
+  Card,
 } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
@@ -41,8 +42,8 @@ const Contact = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ pt: 6 }}>
-      <Box>
+    <Container maxWidth="md">
+      <Card elevation={3} sx={{ py: 6 }}>
         {/* Header Section */}
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography variant="h2" sx={{ fontWeight: 700, mb: 2 }}>
@@ -125,7 +126,7 @@ const Contact = () => {
             </Stack>
           </form>
         </StyledPaper>
-      </Box>
+      </Card>
     </Container>
   );
 };
