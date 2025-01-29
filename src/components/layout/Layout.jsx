@@ -23,6 +23,7 @@ import UserMenu from "./UserMenu";
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import styled from '@emotion/styled';
+import ComingSoonBtn from "../ElementaryComponents/ComingSoonBtn";
 
 /**
  * Layout Component - Main layout wrapper for the application
@@ -155,7 +156,7 @@ const Layout = () => {
           <LogoText variant="h6" isSmallScreen={isSmallScreen}>
             <img src="/ds-logo.svg" alt="Digi Suraksha Logo" style={{ width: '40px', height: '40px' }} />
             <span>Digi</span>
-            <span className="highlight">Suraksha</span>
+            <span className="highlight">Surakshaa</span>
             {!isSmallScreen && (
               <Box
                 component="span"
@@ -263,6 +264,7 @@ const Layout = () => {
                       sx={{ 
                         position: 'relative',
                         overflow: 'hidden',
+                        cursor: 'not-allowed',
                         '&::after': {
                           content: '""',
                           position: 'absolute',
@@ -284,21 +286,8 @@ const Layout = () => {
                     >
                       <Box>
                         Sign Up
+                        <ComingSoonBtn customStyles={{ ml: 1 }} />
                         </Box>
-                        <Typography
-                          component="span"
-                          sx={{
-                            fontSize: '0.7rem',
-                            bgcolor: 'rgba(255, 255, 255, 0.2)',
-                            px: 0.8,
-                            py: 0.2,
-                            borderRadius: '10px',
-                            border: '1px solid rgba(255, 255, 255, 0.3)',
-                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                          }}
-                        >
-                          Coming Soon
-                        </Typography>
                     </GradientButton>
                   </Tooltip>
                 )}
