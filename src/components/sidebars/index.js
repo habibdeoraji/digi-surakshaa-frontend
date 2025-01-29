@@ -14,3 +14,4 @@ export { default as SettingsSidebar } from './SettingsSidebar';
 export { default as ReportScamSidebar } from './ReportScamSidebar';
 export { default as ContactSidebar } from './ContactSidebar';
 export { default as EducationalSidebar } from './EducationalSidebar'; 
+export { default as SubscriptionSideBar } from './SubscriptionSideBar';

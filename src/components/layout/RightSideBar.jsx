@@ -17,8 +17,8 @@ import {
   ReportScamSidebar,
   ContactSidebar,
   EducationalSidebar,
+  SubscriptionSideBar,
 } from '../sidebars';
-import SubscriptionSideBar from '../sidebars/SubscriptionSideBar';
 
 const RightSideBar = () => {
   const location = useLocation();
