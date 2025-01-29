@@ -197,6 +197,7 @@ const ScamCard = ({ scam, loading = false }) => {
                   textTransform: 'capitalize',
                   borderColor: 'divider',
                   px: 2,
+                  height:'20px'
                 }}
               >
                 {platform}

@@ -28,6 +28,7 @@ import {
   // ForgotPassword,
 } from "./pages";
 import Articles from "./pages/Articles";
+import SubscriptionPage from './pages/SubscriptionPage';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="partners" element={<Partners />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="subscription" element={<SubscriptionPage />} />
 
           {/* TODO: Add Auth related routes in the next phas */}
           {/* <Route path="educational" element={<Educational />} /> */}
