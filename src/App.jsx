@@ -29,6 +29,7 @@ import {
 } from "./pages";
 import Articles from "./pages/Articles";
 import SubscriptionPage from './pages/SubscriptionPage';
+import ScamVerification from "./pages/ScamVerification";
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="contact" element={<Contact />} />
           <Route path="subscription" element={<SubscriptionPage />} />
+          <Route path="verify" element={<ScamVerification />} />
 
           {/* TODO: Add Auth related routes in the next phas */}
           {/* <Route path="educational" element={<Educational />} /> */}

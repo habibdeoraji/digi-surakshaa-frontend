@@ -19,6 +19,7 @@ import {
   EducationalSidebar,
   SubscriptionSideBar,
 } from '../sidebars';
+import ScamVerificationSidebar from '../sidebars/ScamVerificationSidebar';
 
 const RightSideBar = () => {
   const location = useLocation();
@@ -42,7 +43,8 @@ const RightSideBar = () => {
       '/partners': <PartnersSidebar />,
       '/contact': <ContactSidebar />,
       '/educational': <EducationalSidebar />,
-      '/subscription': <SubscriptionSideBar/>,
+      '/subscription': <SubscriptionSideBar />,
+      '/verify': <ScamVerificationSidebar />,
     };
 
     // Check for paths that start with '/scam/' or '/resources'

@@ -7,6 +7,7 @@ import {
   HandshakeIcon,
   ContactMailIcon,
   DashboardIcon,
+  PolicyIcon,
 } from "../assets/icons";
 
 export const routes = [
@@ -56,6 +57,12 @@ export const routes = [
     label: "Contact",
     icon: ContactMailIcon,
     path: "/contact",
+    isProtected: false,
+  },
+  {
+    label: "Verify",
+    icon: PolicyIcon,
+    path: "/verify",
     isProtected: false,
   },
 ];
