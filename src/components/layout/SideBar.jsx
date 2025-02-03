@@ -16,6 +16,7 @@ import { CloseIcon } from "../../assets/icons";
 import { routes } from "../../routes/routes";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/slices/authSlice";
+import ComingSoonBtn from "../ElementaryComponents/ComingSoonBtn";
 
 const NavMenuItem = styled(Link)(({ theme, active }) => ({
   display: "flex",
@@ -193,43 +194,14 @@ const drawerContent = (
               sx={{ 
                 position: 'relative',
                 overflow: 'hidden',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  animation: 'shine 2s infinite linear',
-                },
-                '@keyframes shine': {
-                  '0%': {
-                    transform: 'translateX(-100%)',
-                  },
-                  '100%': {
-                    transform: 'translateX(100%)',
-                  },
-                },
+                cursor: 'not-allowed',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 Report Scam
-                <Typography
-                  component="span"
-                  sx={{
-                    fontSize: '0.7rem',
-                    bgcolor: 'rgba(255, 255, 255, 0.2)',
-                    px: 0.8,
-                    py: 0.2,
-                    borderRadius: '10px',
-                    ml: 0,
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                  }}
-                >
-                  Coming Soon
-                </Typography>
-              </Box>
+              <ComingSoonBtn customStyles={{ ml: 0.1 }} />
             </ReportScamButton>
           </Tooltip>
         </Box>
