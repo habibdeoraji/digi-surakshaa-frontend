@@ -6,17 +6,14 @@ import {
   Typography,
   useTheme,
   alpha,
-  Button,
-  Tooltip,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { CloseIcon } from "../../assets/icons";
+import { CloseIcon, PolicyIcon } from "../../assets/icons";
 import { routes } from "../../routes/routes";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/slices/authSlice";
-import ComingSoonBtn from "../ElementaryComponents/ComingSoonBtn";
 
 const NavMenuItem = styled(Link)(({ theme, active }) => ({
   display: "flex",
@@ -57,6 +54,29 @@ const NavMenuItem = styled(Link)(({ theme, active }) => ({
   }),
 }));
 
+const VerifyScamButton = styled(Link)(({ theme }) => ({
+  height: 42,
+  width: '90%',
+  borderRadius: 21,
+  textTransform: 'none',
+  fontSize: '0.75rem',
+  fontWeight: 600,
+  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+  color: '#fff',
+  boxShadow: `0 2px 8px ${alpha(theme.palette.primary.main, 0.25)}`,
+  '&:hover': {
+    color: 'white',
+  },
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: '0 auto',
+  marginTop: 'auto',
+  marginBottom: '20px',
+  alignSelf: 'center',
+  gap: theme.spacing(1),
+}));
+
 const IconWrapper = styled(Box)(({ theme, active }) => ({
   marginRight: theme.spacing(2),
   display: "flex",
@@ -69,7 +89,7 @@ const IconWrapper = styled(Box)(({ theme, active }) => ({
 }));
 
 const MenuText = styled(Typography)(({ active, theme }) => ({
-  flexGrow: 1,
+  // flexGrow: 1,
   fontSize: theme.typography.body1.fontSize,
   fontWeight: active ? 700 : 500,
   letterSpacing: "0.02em",
@@ -86,26 +106,6 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
       duration: theme.transitions.duration.shorter,
     }),
   },
-}));
-
-const ReportScamButton = styled(Button)(({ theme }) => ({
-  height: 42,
-  width: '90%',
-  margin: '0 auto',
-  borderRadius: 21,
-  textTransform: 'none',
-  fontSize: '0.75rem',
-  fontWeight: 600,
-  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
-  color: theme.palette.common.white,
-  boxShadow: `0 2px 8px ${alpha(theme.palette.primary.main, 0.25)}`,
-  '&:hover': {
-    background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`,
-    boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.35)}`,
-  },
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(1),
 }));
 
 const Sidebar = ({ mobileOpen, handleDrawerToggle, isSmallScreen }) => {
@@ -170,7 +170,7 @@ const drawerContent = (
           {routes.map((route) => renderMenuItem(route))}
         </List>
         
-        {/* Report Scam Button - Centered */}
+        {/* Report Scam Button - Centered
         <Box sx={{ 
           display: 'flex',
           justifyContent: 'center',
@@ -204,8 +204,20 @@ const drawerContent = (
               <ComingSoonBtn customStyles={{ ml: 0.1 }} />
             </ReportScamButton>
           </Tooltip>
+      </Box> */}
+      
+
+
+      <VerifyScamButton
+        key="/verify"
+        to="/verify"
+        onClick={isSmallScreen ? handleDrawerToggle : undefined}
+        active={isActive("/verify")}
+      >
+          <PolicyIcon />
+        <MenuText active={isActive("/verify")}>Verify</MenuText>
+      </VerifyScamButton>
         </Box>
-      </Box>
     </>
   );
 
