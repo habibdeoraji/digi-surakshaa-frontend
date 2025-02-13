@@ -1,41 +1,95 @@
-image: node:18
-
-definitions:
-  steps:
-    - step: &build-test
-        name: Build and Test
-        caches:
-          - node
-        script:
-          - node --version
-          - npm --version
-          - npm install
-          - npm run build
-        artifacts:
-          - dist/**
-
-pipelines:
-  branches:
-    staging:
-      - step: *build-test
-      - step:
-          name: Deploy to Vercel (Staging)
-          script:
-            - npm install --global vercel
-            - vercel --version
-            - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-            - vercel build --token=$VERCEL_TOKEN
-            - vercel deploy --token=$VERCEL_TOKEN --prebuilt
-          artifacts:
-            - .vercel/**
-
-  pull-requests:
-    '**':
-      - step: *build-test
-
-options:
-  max-time: 30
+image: node:16
 
 definitions:
   caches:
-    node: $HOME/.npm 
+    npm: ~/.npm
+    
+  steps:
+    - step: &security-scan
+        name: Security Scan
+        script:
+          - pipe: snyk/snyk-scan:0.5.3
+            variables:
+              SNYK_TOKEN: $SNYK_TOKEN
+
+    - step: &build-and-test
+        name: Build and Test
+        caches:
+          - npm
+        script:
+          - npm ci
+          - npm test
+          
+    - step: &deploy-to-dev
+        name: Deploy to Dev
+        deployment: Dev
+        caches:
+          - npm
+        script:
+          # Configure AWS credentials
+          - pipe: atlassian/aws-cli-run:1.0.0
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+              
+          # Install dependencies and build
+          - npm ci
+          - npm run build
+          
+          # Deploy to S3
+          - aws s3 sync dist/ s3://digi-surakshaa-dev --delete
+          
+          # Invalidate CloudFront cache
+          - aws cloudfront create-invalidation --distribution-id $CF_DEV_DISTRIBUTION_ID --paths "/*"
+          
+    - step: &deploy-to-prod
+        name: Deploy to Production
+        deployment: Production
+        caches:
+          - npm
+        script:
+          # Configure AWS credentials
+          - pipe: atlassian/aws-cli-run:1.0.0
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+              
+          # Install dependencies and build
+          - npm ci
+          - npm run build
+          
+          # Deploy to S3
+          - aws s3 sync dist/ s3://digi-surakshaa-prod --delete
+          
+          # Invalidate CloudFront cache
+          - aws cloudfront create-invalidation --distribution-id $CF_PROD_DISTRIBUTION_ID --paths "/*"
+
+pipelines:
+  default:
+    - parallel:
+      - step: *security-scan
+      - step: *build-and-test
+      
+  branches:
+    dev:
+      - parallel:
+        - step: *security-scan
+        - step: *build-and-test
+      - step: *deploy-to-dev
+        
+    main:
+      - parallel:
+        - step: *security-scan
+        - step: *build-and-test
+      - step: *deploy-to-prod
+
+  pull-requests:
+    '**':
+      - parallel:
+        - step: *security-scan
+        - step: *build-and-test
+
+options:
+  max-time: 30 
