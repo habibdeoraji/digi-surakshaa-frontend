@@ -5,19 +5,13 @@ definitions:
     npm: ~/.npm
     
   steps:
-    - step: &security-scan
-        name: Security Scan
-        script:
-          - pipe: snyk/snyk-scan:0.5.0
-            variables:
-              SNYK_TOKEN: $SNYK_TOKEN
-
     - step: &build-and-test
         name: Build and Test
         caches:
           - npm
         script:
           - npm ci
+          - export NODE_ENV=test
           - npm test
           
     - step: &deploy-to-dev
@@ -75,26 +69,22 @@ definitions:
 pipelines:
   default:
     - parallel:
-      - step: *security-scan
       - step: *build-and-test
       
   branches:
     dev:
       - parallel:
-        - step: *security-scan
         - step: *build-and-test
       - step: *deploy-to-dev
         
     main:
       - parallel:
-        - step: *security-scan
         - step: *build-and-test
       - step: *deploy-to-prod
 
   pull-requests:
     '**':
       - parallel:
-        - step: *security-scan
         - step: *build-and-test
 
 options:

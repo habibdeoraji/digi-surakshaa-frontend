@@ -7,6 +7,15 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',
+    environmentOptions: {
+      jsdom: {
+        // Add jsdom options if needed
+      }
+    },
+    deps: {
+      inline: ['@mui/material', '@mui/icons-material']
+    },
+    threads: false, // Disable threading to avoid crypto issues
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
