@@ -22,7 +22,7 @@ definitions:
           
     - step: &deploy-to-dev
         name: Deploy to Dev
-        deployment: dev
+        deployment: Dev
         caches:
           - npm
         script:
@@ -48,7 +48,7 @@ definitions:
           
     - step: &deploy-to-prod
         name: Deploy to Production
-        deployment: production
+        deployment: Production
         caches:
           - npm
         script:
