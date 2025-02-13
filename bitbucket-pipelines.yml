@@ -11,8 +11,7 @@ definitions:
           - npm
         script:
           - npm ci
-          - export NODE_ENV=test
-          - npm test
+          - NODE_OPTIONS='--experimental-vm-modules' npm test
           
     - step: &deploy-to-dev
         name: Deploy to Dev
