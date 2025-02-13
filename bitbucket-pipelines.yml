@@ -34,7 +34,7 @@ definitions:
           - npm run build
           
           # Deploy to S3
-          - aws s3 sync dist/ s3://digi-surakshaa-dev --delete
+          - aws s3 sync dist/ s3://digi-surakshaa-frontend-dev --delete
           
           # Invalidate CloudFront cache
           - aws cloudfront create-invalidation --distribution-id $CF_DEV_DISTRIBUTION_ID --paths "/*"
@@ -60,7 +60,7 @@ definitions:
           - npm run build
           
           # Deploy to S3
-          - aws s3 sync dist/ s3://digi-surakshaa-prod --delete
+          - aws s3 sync dist/ s3://digi-surakshaa-frontend-prod --delete
           
           # Invalidate CloudFront cache
           - aws cloudfront create-invalidation --distribution-id $CF_PROD_DISTRIBUTION_ID --paths "/*"
