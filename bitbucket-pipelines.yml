@@ -16,6 +16,7 @@ definitions:
     - step: &deploy-to-dev
         name: Deploy to Dev
         deployment: Dev
+        trigger: manual
         caches:
           - npm
         script:
